@@ -1,0 +1,149 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Random Forest Walkthrough (Project)</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #fff;
+      --text: #1f2933;
+      --muted: #52606d;
+      --accent: #6e182a;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", Arial, sans-serif; margin: 0; background: var(--bg); color: var(--text); }
+    main { max-width: 960px; margin: 24px auto 64px; padding: 0 20px; }
+    h1 { margin: 0 0 12px 0; color: var(--accent); }
+    h2 { margin-top: 22px; margin-bottom: 8px; }
+    p { margin: 6px 0 10px; color: var(--muted); }
+    ul { margin: 6px 0 14px 18px; }
+    li { margin: 4px 0; }
+    code { background: #f4f4f4; padding: 2px 5px; border-radius: 4px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Random Forest Walkthrough (Project)</h1>
+  <p>Base path: C:\xampp\htdocs\tragabay_training_new_ML - Copy (3)</p>
+
+  <div class="card">
+    <h2>Overview</h2>
+    <ul>
+      <li>Goal: Predict <strong>Career</strong> from survey answers.</li>
+      <li>Main script: <code>ml/train_ied.py</code> (current version).</li>
+      <li>Dataset: prefers <code>ml/career_recommendation_dataset_ied.xlsx</code>, falls back to shared CSV (~15k rows).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Data Loading</h2>
+    <ul>
+      <li>Loads IED-specific dataset first; if missing, uses shared dataset (e.g., <code>d:\Downloads\career_dataset_15000.csv</code>).</li>
+      <li>Target column: <code>Career</code> (or <code>Recommended_Career</code> if present).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Features</h2>
+    <ul>
+      <li><strong>Program_Encoded</strong> (LabelEncoder on Program) when a program column exists.</li>
+      <li>Question blocks: <code>Apt_Q1-10</code>, <code>Int_Q1-10</code>, <code>Pers_Q1-10</code>, and program-specific blocks (<code>CS/IT/IS/ACT/ICS/IED</code>) if present.</li>
+      <li>Relevance features: <code>Relevance_CS/IT/IS/ACT/ICS/IED</code> derived from standardized program codes.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Preprocessing</h2>
+    <ul>
+      <li>Maps Yes/No to 1/0; fills missing with -1 or 0 (per script logic).</li>
+      <li>Standardizes program names to codes: CS, IT, IS, ACT, ICS, IED.</li>
+      <li>Label-encodes careers; label-encodes program when used.</li>
+      <li>Applies question weighting from <code>question_weights_map</code> (program-aware); defaults to 1.0 if absent.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Class Weights</h2>
+    <ul>
+      <li>If <code>career_weights_map_ied</code> is available and Program exists: builds relevance-based class weights (normalized).</li>
+      <li>Otherwise: uses <code>class_weight=&quot;balanced&quot;</code> to mitigate imbalance.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Train/Test Split</h2>
+    <ul>
+      <li>Stratified 80/20 split with <code>random_state=42</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Model</h2>
+    <ul>
+      <li><code>RandomForestClassifier</code> with: <code>n_estimators=500</code>, <code>max_depth=20</code>, <code>max_features=&quot;sqrt&quot;</code>, the class weights above, <code>n_jobs=-1</code>, <code>random_state=42</code>.</li>
+      <li>Each tree trains on a bootstrap sample; splits on Gini impurity; depth capped at 20.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Computation Flow</h2>
+    <ul>
+      <li><strong>Bootstrap sampling:</strong> For each of 500 trees, sample rows with replacement from the training set.</li>
+      <li><strong>Splitting:</strong> At each node, consider a random subset of features (<code>max_features=&quot;sqrt&quot;</code>); pick the split that minimizes Gini impurity.</li>
+      <li><strong>Depth limit:</strong> Trees grow until pure or depth 20 is reached; this prevents extreme overfitting.</li>
+      <li><strong>Voting:</strong> For inference, each tree outputs a class; the forest predicts the majority class (ties broken internally by class order/probabilities).</li>
+      <li><strong>Class weights:</strong> When set, the impurity calculation is weighted so minority classes influence splits more.</li>
+      <li><strong>Feature importance:</strong> Reported via mean decrease in impurity across all trees.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Training</h2>
+    <ul>
+      <li>Fit the forest on the preprocessed <code>X_train</code>, <code>y_train</code>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Evaluation</h2>
+    <ul>
+      <li>Metrics: accuracy, precision, recall, F1 (weighted).</li>
+      <li>Metrics saved to <code>ml/model_metrics_ied.json</code>. (Older train2 plots live in <code>docs/confusion_matrix_education*.png</code>.)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Artifacts Saved</h2>
+    <ul>
+      <li><code>career_model_ied.pkl</code> (trained RF model).</li>
+      <li><code>label_encoder_ied.pkl</code> (career labels).</li>
+      <li><code>program_encoder_ied.pkl</code> (program labels, if program used).</li>
+      <li><code>career_weights_map_ied.joblib</code> / <code>question_weights_map_ied.joblib</code> (when present).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Inference Steps</h2>
+    <ul>
+      <li>Collect answers for all feature columns; include Program if available.</li>
+      <li>Map Yes/No to 1/0; standardize Program to CS/IT/IS/ACT/ICS/IED.</li>
+      <li>Encode Program with the saved encoder (if used); align feature columns to training order.</li>
+      <li>Call <code>model.predict(X)</code>; decode with the career label encoder.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Tuning Ideas</h2>
+    <ul>
+      <li>Try more trees (e.g., 700), <code>max_depth=None</code>, <code>min_samples_leaf</code> 2-5, <code>max_features</code> 0.4-0.7.</li>
+      <li>Consider <code>ExtraTreesClassifier</code> for variance reduction.</li>
+      <li>Use stratified k-fold CV for more stable metrics.</li>
+    </ul>
+  </div>
+</main>
+</body>
+</html>
+

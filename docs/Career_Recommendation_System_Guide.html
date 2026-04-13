@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Recommendation System - Technical Guide</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 28px;
+        }
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            font-size: 22px;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .header h1 {
+            color: white;
+            border: none;
+            margin: 0;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .flow-diagram {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .flow-step {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .flow-step::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .flow-diagram {
+            counter-reset: step-counter;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+        }
+        
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15px;
+            }
+            
+            .header {
+                page-break-after: avoid;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            .flow-step {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Career Recommendation System</h1>
+        <p>Technical Documentation & Workflow Guide</p>
+        <p style="font-size: 12px; margin-top: 5px;">Machine Learning-Based Career Prediction System</p>
+    </div>
+
+    <h2>1. System Overview</h2>
+    <p>
+        The Career Recommendation System is an intelligent platform that uses <strong>Random Forest Machine Learning</strong> 
+        to provide personalized career recommendations to students based on their assessment responses. The system analyzes 
+        student answers from multiple assessments and generates career predictions tailored to their academic program.
+    </p>
+    
+    <div class="info-box">
+        <strong>Key Feature:</strong> The system requires students to complete <span class="highlight">exactly 40 assessment questions</span> 
+        before generating recommendations, ensuring comprehensive data collection for accurate predictions.
+    </div>
+
+    <h2>2. System Architecture</h2>
+    <p>The system consists of three main components:</p>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Technology</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><strong>Frontend</strong></td>
+            <td>PHP, HTML, JavaScript</td>
+            <td>User interface, data collection, result display</td>
+        </tr>
+        <tr>
+            <td><strong>Backend Processing</strong></td>
+            <td>PHP</td>
+            <td>Data validation, feature extraction, result filtering</td>
+        </tr>
+        <tr>
+            <td><strong>ML Engine</strong></td>
+            <td>Python (scikit-learn)</td>
+            <td>Random Forest model inference, probability calculation</td>
+        </tr>
+    </table>
+
+    <h2>3. Complete Workflow</h2>
+    <div class="flow-diagram">
+        <div class="flow-step">
+            <strong>Student Authentication</strong><br>
+            Student logs in and accesses the career prediction page. System verifies student role and session.
+        </div>
+        
+        <div class="flow-step">
+            <strong>Assessment Completion Check</strong><br>
+            System validates that student has completed all required assessments (exactly 40 answers). 
+            If incomplete, student is prompted to finish assessments first.
+        </div>
+        
+        <div class="flow-step">
+            <strong>Data Collection</strong><br>
+            System retrieves all completed assessment answers from <code>assessment_results_tbl</code> 
+            where <code>assessment_status = 'Completed'</code>. Also fetches student's program information.
+        </div>
+        
+        <div class="flow-step">
+            <strong>Feature Vector Construction</strong><br>
+            Answers are converted into a 40-feature vector:
+            <ul>
+                <li><strong>Aptitude Questions:</strong> Apt_Q1 through Apt_Q10 (10 features)</li>
+                <li><strong>Interest Questions:</strong> Int_Q1 through Int_Q10 (10 features)</li>
+                <li><strong>Personality Questions:</strong> Pers_Q1 through Pers_Q10 (10 features)</li>
+                <li><strong>Program-Specific Questions:</strong> CS_Q1-10, IT_Q1-10, IS_Q1-10, ACT_Q1-10 (10 features)</li>
+            </ul>
+            Each answer is normalized to binary: <code>1</code> for "Yes", <code>0</code> for "No" or missing.
+        </div>
+        
+        <div class="flow-step">
+            <strong>Program Context Addition</strong><br>
+            System adds program-specific relevance features:
+            <ul>
+                <li>Program encoding (CS, IT, IS, or ACT)</li>
+                <li>Relevance scores for each program type</li>
+                <li>Question weights based on program-specific importance</li>
+            </ul>
+        </div>
+        
+        <div class="flow-step">
+            <strong>ML Model Invocation</strong><br>
+            PHP creates a JSON payload and executes Python script:
+            <div class="code-block">
+{
+  "current_program": "BSCS",
+  "features": {
+    "Apt_Q1": 1,
+    "Apt_Q2": 0,
+    ...
+    "ACT_Q10": 1
+  }
+}
+            </div>
+            Python script loads the trained Random Forest model and generates predictions.
+        </div>
+        
+        <div class="flow-step">
+            <strong>Probability Calculation</strong><br>
+            Random Forest model calculates probability scores for all possible careers. 
+            Returns top 5 careers with their probability scores.
+        </div>
+        
+        <div class="flow-step">
+            <strong>Career Weights Application</strong><br>
+            System applies career-program relevance weights to adjust probabilities:
+            <ul>
+                <li>Careers more relevant to student's program get higher adjusted scores</li>
+                <li>Weights are defined in <code>career_weights_map.json</code></li>
+                <li>Each career has relevance scores (0-3) for CS, IT, IS, and ACT programs</li>
+            </ul>
+        </div>
+        
+        <div class="flow-step">
+            <strong>Program Filtering</strong><br>
+            Results are filtered to match student's program:
+            <ul>
+                <li>Only careers allowed for student's program are kept</li>
+                <li>Missing allowed careers are appended to ensure program relevance</li>
+                <li>Duplicates are removed while preserving order</li>
+            </ul>
+        </div>
+        
+        <div class="flow-step">
+            <strong>Result Generation</strong><br>
+            System generates final recommendation with:
+            <ul>
+                <li><strong>Most Likely Career:</strong> Highest probability match</li>
+                <li><strong>Least Likely Career:</strong> Lowest probability from filtered list (if 2+ careers)</li>
+                <li><strong>Full Career List:</strong> Ordered list of all recommended careers</li>
+                <li><strong>Career Descriptions:</strong> Detailed information for each career</li>
+            </ul>
+        </div>
+        
+        <div class="flow-step">
+            <strong>Logging & Display</strong><br>
+            Prediction is logged to <code>ml/prediction_results.jsonl</code> for analytics. 
+            Results are displayed to the student with career descriptions and resources.
+        </div>
+    </div>
+
+    <h2>4. Machine Learning Model Details</h2>
+    
+    <h3>4.1 Model Type: Random Forest Classifier</h3>
+    <p>
+        The system uses a <strong>Random Forest</strong> ensemble learning algorithm, which combines multiple 
+        decision trees to make predictions. This approach provides:
+    </p>
+    <ul>
+        <li><strong>High Accuracy:</strong> Multiple trees reduce overfitting</li>
+        <li><strong>Feature Importance:</strong> Identifies which questions are most predictive</li>
+        <li><strong>Probability Scores:</strong> Provides confidence levels for each prediction</li>
+        <li><strong>Robustness:</strong> Handles missing or noisy data well</li>
+    </ul>
+
+    <h3>4.2 Model Configuration</h3>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>n_estimators</td>
+            <td>500</td>
+            <td>Number of decision trees in the forest</td>
+        </tr>
+        <tr>
+            <td>max_depth</td>
+            <td>20</td>
+            <td>Maximum depth of each tree</td>
+        </tr>
+        <tr>
+            <td>min_samples_split</td>
+            <td>2</td>
+            <td>Minimum samples required to split a node</td>
+        </tr>
+        <tr>
+            <td>min_samples_leaf</td>
+            <td>1</td>
+            <td>Minimum samples required in a leaf node</td>
+        </tr>
+        <tr>
+            <td>max_features</td>
+            <td>'sqrt'</td>
+            <td>Number of features to consider for best split</td>
+        </tr>
+        <tr>
+            <td>class_weight</td>
+            <td>Balanced/Custom</td>
+            <td>Weights classes based on career-program relevance</td>
+        </tr>
+    </table>
+
+    <h3>4.3 Training Data</h3>
+    <p>
+        The model is trained on a dataset containing student assessment responses and their corresponding 
+        career recommendations. The dataset includes:
+    </p>
+    <ul>
+        <li>Multiple student profiles with complete assessment data</li>
+        <li>Career labels for each student</li>
+        <li>Program information (CS, IT, IS, ACT)</li>
+        <li>Question weights for program-specific importance</li>
+    </ul>
+
+    <h2>5. Feature Engineering</h2>
+    
+    <h3>5.1 Question Weights</h3>
+    <p>
+        The system applies <strong>question weights</strong> to emphasize the importance of certain questions 
+        based on the student's program:
+    </p>
+    <ul>
+        <li><strong>Program-Specific Weights:</strong> Some questions are more important for specific programs</li>
+        <li><strong>Universal Weights:</strong> Some questions have equal importance across all programs</li>
+        <li>Weights are defined in <code>question_weights_map.py</code></li>
+    </ul>
+
+    <h3>5.2 Career-Program Relevance</h3>
+    <p>
+        Each career has a relevance score (0-3) for each program type:
+    </p>
+    <ul>
+        <li><strong>0:</strong> Not relevant to the program</li>
+        <li><strong>1:</strong> Somewhat relevant</li>
+        <li><strong>2:</strong> Moderately relevant</strong></li>
+        <li><strong>3:</strong> Highly relevant</li>
+    </ul>
+    <p>
+        These scores are used to adjust prediction probabilities, ensuring careers more aligned with 
+        the student's program receive higher rankings.
+    </p>
+
+    <h2>6. Data Flow Diagram</h2>
+    <div class="info-box">
+        <strong>Input → Processing → Output Flow:</strong><br><br>
+        <strong>Input:</strong> Student Assessment Answers (40 questions)<br>
+        ↓<br>
+        <strong>Feature Extraction:</strong> Convert answers to 40-feature vector + program context<br>
+        ↓<br>
+        <strong>ML Processing:</strong> Random Forest prediction with probability scores<br>
+        ↓<br>
+        <strong>Weight Application:</strong> Adjust probabilities based on career-program relevance<br>
+        ↓<br>
+        <strong>Filtering:</strong> Filter by student's program allowed careers<br>
+        ↓<br>
+        <strong>Output:</strong> Ranked list of recommended careers with descriptions
+    </div>
+
+    <h2>7. Error Handling</h2>
+    <p>The system handles various error scenarios gracefully:</p>
+    <table>
+        <tr>
+            <th>Error Type</th>
+            <th>Condition</th>
+            <th>Response</th>
+        </tr>
+        <tr>
+            <td>Incomplete Assessment</td>
+            <td>Less than 40 answers</td>
+            <td>Prompt student to complete all assessments</td>
+        </tr>
+        <tr>
+            <td>Python Runtime Missing</td>
+            <td>Python executable not found</td>
+            <td>Display error message, log issue</td>
+        </tr>
+        <tr>
+            <td>ML Runtime Failed</td>
+            <td>Python script execution error</td>
+            <td>Return error with stderr details</td>
+        </tr>
+        <tr>
+            <td>Invalid Model Output</td>
+            <td>Malformed JSON response</td>
+            <td>Return error, log for debugging</td>
+        </tr>
+        <tr>
+            <td>No Allowed Careers</td>
+            <td>No careers match student's program</td>
+            <td>Display message to contact administrator</td>
+        </tr>
+    </table>
+
+    <h2>8. Key Files & Components</h2>
+    <table>
+        <tr>
+            <th>File Path</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><code>student/career_prediction.php</code></td>
+            <td>Main UI page for displaying recommendations</td>
+        </tr>
+        <tr>
+            <td><code>admin/includes/model_predict.php</code></td>
+            <td>PHP backend: feature extraction, ML invocation, filtering</td>
+        </tr>
+        <tr>
+            <td><code>ml/predict_career.py</code></td>
+            <td>Python script: loads model, generates predictions</td>
+        </tr>
+        <tr>
+            <td><code>ml/train.py</code></td>
+            <td>Model training script</td>
+        </tr>
+        <tr>
+            <td><code>ml/career_model.pkl</code></td>
+            <td>Trained Random Forest model (serialized)</td>
+        </tr>
+        <tr>
+            <td><code>ml/career_weights_map.json</code></td>
+            <td>Career-program relevance weights</td>
+        </tr>
+        <tr>
+            <td><code>ml/question_weights_map.joblib</code></td>
+            <td>Question importance weights by program</td>
+        </tr>
+        <tr>
+            <td><code>ml/prediction_results.jsonl</code></td>
+            <td>Prediction logs for analytics</td>
+        </tr>
+    </table>
+
+    <h2>9. Database Tables Used</h2>
+    <table>
+        <tr>
+            <th>Table</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><code>assessment_results_tbl</code></td>
+            <td>Stores student assessment answers</td>
+        </tr>
+        <tr>
+            <td><code>assessment_tbl</code></td>
+            <td>Assessment definitions and visibility settings</td>
+        </tr>
+        <tr>
+            <td><code>student_tbl</code></td>
+            <td>Student information and program assignment</td>
+        </tr>
+        <tr>
+            <td><code>program_tbl</code></td>
+            <td>Program definitions (CS, IT, IS, ACT)</td>
+        </tr>
+        <tr>
+            <td><code>career_program_tbl</code></td>
+            <td>Mapping of allowed careers per program</td>
+        </tr>
+        <tr>
+            <td><code>career_tbl</code></td>
+            <td>Career definitions and descriptions</td>
+        </tr>
+    </table>
+
+    <h2>10. Performance & Accuracy</h2>
+    <div class="success-box">
+        <strong>Model Performance Metrics:</strong><br>
+        The Random Forest model is trained and evaluated using standard machine learning metrics:
+        <ul>
+            <li><strong>Accuracy:</strong> Percentage of correct predictions</li>
+            <li><strong>Precision:</strong> Accuracy of positive predictions</li>
+            <li><strong>Recall:</strong> Ability to find all relevant careers</li>
+            <li><strong>F1 Score:</strong> Harmonic mean of precision and recall</li>
+        </ul>
+        Model metrics are stored in <code>ml/model_metrics.json</code> and can be displayed to administrators.
+    </div>
+
+    <h2>11. Future Enhancements</h2>
+    <p>Potential improvements to the system:</p>
+    <ul>
+        <li>Real-time model retraining with new student data</li>
+        <li>Additional assessment types for more comprehensive analysis</li>
+        <li>Integration with job market data for career demand forecasting</li>
+        <li>Student feedback loop to improve model accuracy</li>
+        <li>Multi-model ensemble for improved predictions</li>
+    </ul>
+
+    <div class="footer">
+        <p><strong>Career Recommendation System</strong></p>
+        <p>Documentation Version 1.0 | Generated: <script>document.write(new Date().toLocaleDateString());</script></p>
+        <p>For technical support or questions, please contact the system administrator.</p>
+    </div>
+</body>
+</html>
+

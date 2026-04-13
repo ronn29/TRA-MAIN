@@ -1,0 +1,237 @@
+
+/* login */
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-container {
+    padding: 40px;
+    background: #eeecec;
+    box-shadow: 0 0 0 2px  rgb(110, 24, 42), 16px 16px 0 0 rgb(73, 16, 29);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+
+}
+
+.login-container h2 {
+    color: rgb(110, 24, 42);
+    display: flex;
+    font-size: 42px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    font-weight: 800;
+    
+}
+
+.login-btn {
+    width: 40%;
+    padding: 12px;
+    border: none;
+    background: rgb(110, 24, 42);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+
+.login-container .text a{
+    color: #44052a;
+    font-size: .8rem;
+    font-weight: 400;
+    display: flex;
+    margin: 0 0 10px;
+}
+.login-container .text a:hover{
+    text-decoration: underline;
+}
+
+.login-btn:hover {
+    background: rgb(71, 31, 40);
+} 
+
+/* register */
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.register-container {
+    padding: 40px;
+    background: #eeecec;
+    box-shadow: 0 0 0 2px  rgb(110, 24, 42), 16px 16px 0 0 rgb(73, 16, 29);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+
+}
+
+.register-container h2 {
+    color: rgb(110, 24, 42);
+    display: flex;
+    font-size: 42px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    font-weight: 800;
+    
+}
+
+.register-btn {
+    width: 40%;
+    padding: 12px;
+    border: none;
+    background: rgb(110, 24, 42);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+
+.register-container .text a{
+    color: #44052a;
+    font-size: .8rem;
+    font-weight: 400;
+    display: flex;
+    margin: 0 0 10px;
+}
+.register-container .text a:hover{
+    text-decoration: underline;
+}
+
+.register-btn:hover {
+    background: rgb(71, 31, 40);
+} 
+
+/* Input */
+
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;;
+
+}
+
+.input-group label {
+    display:block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #020202;
+}
+
+.password-group {
+    position: relative;
+}
+
+.password-group input {
+    padding-right: 46px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 65%;
+    /* transform: translateY(-50%); */
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    /* padding: 6px; */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* line-height: 1; */
+    transition: color 0.2s ease;
+}
+
+.toggle-password:hover {
+    color: #000;
+}
+
+.input-group span {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border:1px solid #752626;
+    border-radius: 5px;
+    font-size: 1.05rem;
+}
+.input-group input:focus {
+    border-color: rgb(95, 21, 37);
+    outline: none;
+    border:2px solid #752626;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset; */
+    box-shadow: 0px 0px 16px -6px rgba(209,66,66,0.62);
+}
+
+@media (max-width: 768px) {
+    .login {
+        height: auto;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+    }
+
+    .login-container {
+        max-width: 100%;
+        padding: 30px 20px;
+        box-shadow: 0 0 0 2px rgb(110, 24, 42), 12px 12px 0 0 rgb(73, 16, 29);
+    }
+
+    .login-container h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .login-btn {
+        width: 50%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .register {
+        height: auto;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+    }
+
+    .register-container {
+        max-width: 100%;
+        padding: 30px 20px;
+        box-shadow: 0 0 0 2px rgb(110, 24, 42), 12px 12px 0 0 rgb(73, 16, 29);
+    }
+
+    .register-container h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .register-btn {
+        width: 50%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .input-group label {
+        font-size: 1rem;
+    }
+
+    .input-group input {
+        padding: 10px;
+        font-size: 1rem;
+    }
+}

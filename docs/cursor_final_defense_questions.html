@@ -1,0 +1,1129 @@
+<html><head><meta charset='utf-8'><title>Final Defense Questions</title><style>
+body { font-family: 'Segoe UI', Arial, sans-serif; margin: 24px; line-height: 1.6; background: #f9fafb; color: #1f2933; }
+h1,h2,h3,h4 { color: #6e182a; }
+code, pre { background: #f4f4f4; border-radius: 4px; padding: 2px 4px; }
+pre { padding: 10px; overflow-x: auto; }
+a { color: #0b6fb8; }
+hr { border: 0; border-top: 1px solid #e5e7eb; margin: 20px 0; }
+blockquote { border-left: 4px solid #e5e7eb; margin: 10px 0; padding-left: 12px; color: #52606d; }
+ul { margin-left: 20px; }
+</style></head><body><h1>Final Defense Questions</h1><h1 id="final-defense-questions">Final defense questions</h1>
+<p><em>Exported on 12/15/2025 at 18:12:01 GMT+8 from Cursor (2.2.20)</em></p>
+<hr />
+<p><strong>User</strong></p>
+<p>say youre our panelist for our final defense:</p>
+<p>ask me at least 5 questions about my system </p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Good afternoon! As your panelist, I've reviewed your Career Recommendation System. Let me ask you some questions:</p>
+<h2 id="question-1-model-architecture-and-design-decision">Question 1: Model Architecture and Design Decision</h2>
+<p>I notice you have <strong>two separate models</strong> - one for CS/IT/IS/ACT programs (<code>train.py</code>) and another specifically for IED (<code>train_ied.py</code>). What was your rationale for creating separate models instead of a unified multi-program model? How do you handle scenarios where a student might want recommendations across different departments?</p>
+<h2 id="question-2-class-weighting-and-bias">Question 2: Class Weighting and Bias</h2>
+<p>Your system uses a <strong>career weights map</strong> with relevance scores (0-3 scale) that influence class weights during training. Can you explain how you validated that these weights don't introduce bias against certain career paths? What happens if a career has low relevance scores across all programs but might still be a valid recommendation for certain student profiles?</p>
+<h2 id="question-3-feature-engineering-and-question-weights">Question 3: Feature Engineering and Question Weights</h2>
+<p>I see you're applying <strong>program-specific question weights</strong> in a vectorized manner (lines 189-214 in <code>train_ied.py</code>). Walk me through how you determined which questions should have program-specific weights versus universal weights. Did you conduct any feature importance analysis to validate these weight assignments?</p>
+<h2 id="question-4-scalability-and-maintenance">Question 4: Scalability and Maintenance</h2>
+<p>Your consultation calendar system is entirely separate from the ML pipeline. How do you ensure <strong>data consistency</strong> between student consultations and ML predictions? Also, if new programs or careers are added to your institution, what's the process for retraining and updating both models?</p>
+<h2 id="question-5-validation-and-real-world-performance">Question 5: Validation and Real-World Performance</h2>
+<p>Your models show accuracy metrics around 90%+ on test data, but how have you validated the system's performance with <strong>actual students</strong>? Do you have any data on student satisfaction with recommendations, or cases where the system's predictions aligned or misaligned with eventual career outcomes? How do you handle the "cold start" problem for new students with limited assessment data?</p>
+<hr />
+<p><em>Take your time to answer each question. I may have follow-up questions based on your responses.</em></p>
+<hr />
+<p><strong>User</strong></p>
+<p>can you translate it in filipino do tag-lish</p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Magandang hapon! As your panelist, nag-review ako ng inyong Career Recommendation System. Let me ask you some questions:</p>
+<h2 id="question-1-model-architecture-and-design-decision_1">Question 1: Model Architecture and Design Decision</h2>
+<p>Napansin ko na may <strong>dalawang separate models</strong> kayo - one for CS/IT/IS/ACT programs (<code>train.py</code>) and another specifically for IED (<code>train_ied.py</code>). Ano ba yung rationale niyo for creating separate models instead of one unified multi-program model? Paano niyo hinahandle yung scenarios kung gusto ng student na mag-explore ng recommendations across different departments?</p>
+<h2 id="question-2-class-weighting-and-bias_1">Question 2: Class Weighting and Bias</h2>
+<p>Yung system niyo is using a <strong>career weights map</strong> with relevance scores (0-3 scale) na nag-iinfluence ng class weights during training. Can you explain kung paano niyo na-validate na yung mga weights na yan ay hindi nag-iintroduce ng bias against certain career paths? Ano mangyayari kung yung isang career ay may low relevance scores sa lahat ng programs pero valid pa rin siyang recommendation for certain student profiles?</p>
+<h2 id="question-3-feature-engineering-and-question-weights_1">Question 3: Feature Engineering and Question Weights</h2>
+<p>Nakita ko na nag-apply kayo ng <strong>program-specific question weights</strong> in a vectorized manner (lines 189-214 sa <code>train_ied.py</code>). Walk me through kung paano niyo na-determine which questions should have program-specific weights versus universal weights. May ginawa ba kayong feature importance analysis para i-validate yung weight assignments na yan?</p>
+<h2 id="question-4-scalability-and-maintenance_1">Question 4: Scalability and Maintenance</h2>
+<p>Yung consultation calendar system niyo is completely separate from the ML pipeline. Paano niyo ini-ensure yung <strong>data consistency</strong> between student consultations and ML predictions? Pag may bagong programs or careers na dinagdag sa institution, ano yung process para i-retrain and i-update yung both models?</p>
+<h2 id="question-5-validation-and-real-world-performance_1">Question 5: Validation and Real-World Performance</h2>
+<p>Yung mga models niyo ay nag-show ng accuracy metrics around 90%+ sa test data, pero paano niyo na-validate yung performance ng system with <strong>actual students</strong>? May data ba kayo on student satisfaction with recommendations, or cases kung saan yung predictions ng system ay aligned or misaligned sa eventual career outcomes nila? Paano niyo hinahandle yung "cold start" problem for new students with limited assessment data?</p>
+<hr />
+<p><em>Take your time to answer each question ha. May follow-up questions pa ako depende sa sagot niyo.</em></p>
+<hr />
+<p><strong>User</strong></p>
+<p>can you answer the question </p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Sige, let me answer those questions based sa system:</p>
+<h2 id="answer-1-model-architecture-and-design-decision">Answer 1: Model Architecture and Design Decision</h2>
+<p><strong>Po, yung reason po why we created two separate models is for specialization and accuracy per department.</strong> </p>
+<p>Yung IED program kasi has very different career paths compared sa CS/IT/IS/ACT - industrial engineering careers require different skill assessments compared sa pure IT careers. By having separate models:
+- We can use <strong>department-specific datasets</strong> (<code>career_recommendation_dataset_ied.xlsx</code> vs the regular one)
+- We have <strong>different career_weights_maps</strong> (career_weights_map_ied.py) tailored sa relevance ng careers per program
+- The model can focus better sa specific career paths relevant sa department</p>
+<p>For cross-department recommendations, students would need to take assessments specific sa program they're interested in. The system currently doesn't support cross-department recommendations kasi bawat department may kanya-kanyang assessment questions.</p>
+<h2 id="answer-2-class-weighting-and-bias">Answer 2: Class Weighting and Bias</h2>
+<p><strong>We addressed bias through multiple mechanisms po:</strong></p>
+<p>Sa code (lines 138-146 in train.py), we're using a <strong>normalized weighting system</strong>:
+- Career weights are on a 0-3 scale (0=not relevant, 3=highly relevant)
+- We convert this to a multiplier (0.5 to 1.5) so no career gets completely excluded
+- Weights are then normalized to the maximum weight</p>
+<p>Even if a career has low relevance scores, it still gets a weight of at least 0.5 relative to the max weight. The model uses <code>class_weight='balanced'</code> as fallback kung walang weights available, which automatically adjusts for class imbalance. This ensures rare but valid careers can still be recommended kung yung student's answers strongly match that career pattern.</p>
+<h2 id="answer-3-feature-engineering-and-question-weights">Answer 3: Feature Engineering and Question Weights</h2>
+<p><strong>The question weights were designed based on question relevance sa different programs po.</strong></p>
+<p>Looking at lines 194-217 in train.py:
+- We have <strong>two types of weights</strong>: universal (same for all programs) and program-specific (dict with different weights per program code)
+- Program-specific questions (like CS_Q1-Q10, IT_Q1-Q10, etc.) naturally have higher weights when matched to their program
+- General questions (Apt_Q, Int_Q, Pers_Q) have universal weights</p>
+<p>The vectorized approach ensures efficient processing - instead of row-by-row, we map weights using pandas Series operations which is much faster for large datasets.</p>
+<p>Unfortunately, we haven't documented a formal feature importance validation study yet, pero the RandomForest model itself has <code>feature_importances_</code> attribute (lines 277-285) that we print after training to see which features actually matter most.</p>
+<h2 id="answer-4-scalability-and-maintenance">Answer 4: Scalability and Maintenance</h2>
+<p><strong>Data consistency is maintained through the database po.</strong> </p>
+<p>The consultation calendar (consultation_calendar.php) stores student consultation records in the database, while ML predictions are also logged. However, you're right na there's currently <strong>no automatic feedback loop</strong> - the consultation data doesn't automatically retrain the model.</p>
+<p>For adding new programs/careers:
+1. Update the <code>program_mapping</code> dict (lines 91-105 in train_ied.py)
+2. Create/update the career_weights_map for the new careers
+3. Update the dataset with examples of the new career
+4. Run the training script again
+5. Deploy the new .pkl files</p>
+<p>Admittedly, this is a <strong>manual process</strong> right now. For production, we'd need to implement automated retraining pipelines and versioning.</p>
+<h2 id="answer-5-validation-and-real-world-performance">Answer 5: Validation and Real-World Performance</h2>
+<p><strong>This is our biggest limitation po - we haven't deployed it to actual students yet.</strong></p>
+<p>The 90%+ accuracy is based on:
+- Train/test split (80/20) with stratification (line 229-241 in train.py)
+- Cross-validation on historical/synthetic data
+- Multiple metrics: accuracy, precision, recall, F1-score</p>
+<p>However, we <strong>don't have real-world validation data yet</strong> because:
+- The system is still in development/testing phase
+- No student satisfaction surveys have been conducted
+- No longitudinal studies tracking if recommendations matched actual career outcomes</p>
+<p>For the "cold start" problem, our approach is:
+- Students must complete all assessment questions (Apt_Q1-10, Int_Q1-10, etc.) before getting recommendations
+- We require minimum data (30 questions for general, 10 per program-specific) so there's no "partial assessment" scenario
+- But we don't have a solution for students who skip questions - currently those might get -1 encoded values</p>
+<hr />
+<p><strong>Po, ang honest answer is yung system is academically sound based on the dataset pero hindi pa siya battle-tested with real students.</strong> That's something we acknowledge as future work for validation and improvement.</p>
+<hr />
+<p><strong>User</strong></p>
+<p>make more Question </p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Sige, here are more questions from the panel:</p>
+<h2 id="question-6-dataset-quality-and-representativeness">Question 6: Dataset Quality and Representativeness</h2>
+<p>Nakita ko na yung dataset niyo ay may <strong>10,834 rows</strong> sa Excel file. Can you explain kung paano ninyo na-generate or collect yung dataset na yan? Is it based on real student data ba, synthetic/simulated data, or combination? How do you ensure na yung dataset is representative ng actual student population ng institution? May concern ba kayo about <strong>data imbalance</strong> - for example, baka mas maraming samples for certain careers compared sa iba?</p>
+<h2 id="question-7-random-forest-hyperparameter-tuning">Question 7: Random Forest Hyperparameter Tuning</h2>
+<p>Yung Random Forest model niyo uses specific hyperparameters:
+- <code>n_estimators=500</code>
+- <code>max_depth=20</code>
+- <code>min_samples_split=2</code>
+- <code>max_features='sqrt'</code></p>
+<p>Did you perform <strong>Grid Search or Random Search</strong> para ma-optimize yung hyperparameters na yan, or based on default/intuition lang? Bakit 500 trees specifically? May ginawa ba kayong comparative analysis with other algorithms like SVM, XGBoost, or Neural Networks to justify using Random Forest?</p>
+<h2 id="question-8-question-design-and-validation">Question 8: Question Design and Validation</h2>
+<p>Looking at your system, may <strong>70 total questions</strong> (10 each for Apt, Int, Pers, CS, IT, IS, ACT). Paano ninyo na-validate na yung questions na yan are actually predictive of career success? May involvement ba ng psychologists or career counselors sa design ng questions? Ano yung theoretical framework behind your aptitude, interest, and personality questions? May reliability and validity testing ba na ginawa?</p>
+<h2 id="question-9-real-time-prediction-and-performance">Question 9: Real-time Prediction and Performance</h2>
+<p>Pag nag-submit ng student ng assessment, how fast yung prediction response time? Given na may 500 trees yung Random Forest model and may complex feature engineering with weights, may optimization ba kayong ginawa for production deployment? What if may <strong>100 students simultaneously</strong> taking the assessment - kaya ba ng system? Naka-cache ba yung models sa memory or nag-load from disk every time?</p>
+<h2 id="question-10-handling-model-updates-without-breaking-production">Question 10: Handling Model Updates Without Breaking Production</h2>
+<p>Let's say na nag-train kayo ng new model version with improved accuracy. Paano yung <strong>deployment strategy</strong> niyo? Do you have:
+- Model versioning system?
+- A/B testing capability?
+- Rollback mechanism kung may problems?
+- Backward compatibility para sa older assessment results?</p>
+<p>Pag nag-update ng model, ano mangyayari sa previous student recommendations - mag-recompute ba lahat or preserved yung old predictions?</p>
+<h2 id="question-11-explainability-and-transparency">Question 11: Explainability and Transparency</h2>
+<p>One criticism ng ML systems in education is yung lack of explainability. If a student asks <strong>"Bakit Data Scientist yung recommended career ko instead of Web Developer?"</strong>, paano niyo mae-explain yung decision ng model? Do you provide:
+- Feature importance breakdown per prediction?
+- Confidence scores?
+- Alternative career suggestions with similarity scores?</p>
+<p>Lalo na importante ito kasi career decisions are life-changing - students and parents need to understand the "why" behind recommendations.</p>
+<h2 id="question-12-ethical-considerations-and-fairness">Question 12: Ethical Considerations and Fairness</h2>
+<p>Your system influences career decisions na pwedeng mag-affect ng students' future. May ginawa ba kayong <strong>fairness audit</strong> to check for potential discrimination? For example:
+- Does the model perform equally well across different demographics?
+- May gender bias ba sa certain career recommendations?
+- Paano niyo hine-handle students with disabilities or special needs?
+- What if yung student's true calling ay wala sa career list niyo?</p>
+<p>May disclaimer ba kayo that the system is a "recommendation tool" and not a final decision-maker?</p>
+<h2 id="question-13-integration-with-consultation-system">Question 13: Integration with Consultation System</h2>
+<p>Yung consultation calendar system looks like a manual scheduling system lang. Bakit hindi integrated yung consultation results sa ML training pipeline? Wouldn't it be valuable na after consultation, yung counselor can flag if yung ML recommendation was accurate or not, then use that feedback for <strong>continuous learning</strong>? May plans ba kayong mag-implement ng feedback loop between consultations and model retraining?</p>
+<h2 id="question-14-missing-data-handling">Question 14: Missing Data Handling</h2>
+<p>Sa code, nakita ko yung handling ng missing values:</p>
+<pre><code class="language-python">df[col] = df[col].fillna(-1).astype(int)  # -1 for N/A
+</code></pre>
+<p>So you're encoding unanswered questions as <strong>-1</strong>. Pero doesn't this create an artificial "N/A" category na potentially meaningful to the model? Paano kung yung student accidentally skipped a question - should that be treated the same as intentionally not answering? Have you analyzed kung gaano ka-sensitive yung model sa missing data? What's your policy - required ba lahat ng questions or may minimum completion rate?</p>
+<h2 id="question-15-career-market-relevance-and-updates">Question 15: Career Market Relevance and Updates</h2>
+<p>Yung career recommendations niyo are based on a fixed list of careers. But the job market is constantly evolving - emerging fields like <strong>AI Ethics Specialist, Blockchain Developer, Metaverse Architect</strong> didn't exist 5 years ago. Ano yung strategy niyo for keeping the career recommendations relevant? How often ba dapat i-update yung career list and model? May mechanism ba for detecting when a career becomes obsolete or when new careers emerge?</p>
+<hr />
+<p><em>Mahaba pa ang araw, take your time sa mga answers! We want to see kung gaano kalalim yung understanding niyo sa system na ginawa niyo.</em> 😊</p>
+<pre><code class="language-python">df[col] = df[col].fillna(-1).astype(int)  # -1 for N/A
+</code></pre>
+<hr />
+<p><strong>User</strong></p>
+<p>answer it</p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Sige, let me answer all these questions po:</p>
+<h2 id="answer-6-dataset-quality-and-representativeness">Answer 6: Dataset Quality and Representativeness</h2>
+<p><strong>Po, honestly speaking, yung 10,834 rows dataset is most likely synthetic or simulated data.</strong> </p>
+<p>Based sa structure ng Excel file with perfect Yes/No answers and systematic career mappings, it appears na:
+- Generated using a systematic approach to create training data
+- May follow certain patterns based on career-question correlations
+- NOT from actual student historical data (kasi wala pang deployment)</p>
+<p><strong>For data imbalance</strong>, we address it through:
+- <code>stratify=y_encoded</code> parameter sa train_test_split (line 240 in train.py) - ensures proportional representation sa test set
+- <code>class_weight='balanced'</code> or custom class weights - automatically adjusts for imbalanced classes
+- The career_weights_map actually helps with this by giving appropriate weights to underrepresented careers</p>
+<p>But you're right, <strong>this is a limitation</strong> - synthetic data might not capture the complexity of real student responses.</p>
+<h2 id="answer-7-random-forest-hyperparameter-tuning">Answer 7: Random Forest Hyperparameter Tuning</h2>
+<p><strong>Honestly po, yung hyperparameters are based on empirical best practices, NOT from systematic Grid Search.</strong></p>
+<p>The choices:
+- <strong>n_estimators=500</strong>: More trees = better accuracy but diminishing returns after a point. 500 is a sweet spot between accuracy and training time
+- <strong>max_depth=20</strong>: Prevents overfitting while allowing complex decision boundaries
+- <strong>min_samples_split=2</strong>: Default value, allows trees to grow deep
+- <strong>max_features='sqrt'</strong>: Standard for classification, reduces correlation between trees</p>
+<p><strong>We did NOT do comparative analysis with other algorithms.</strong> Random Forest was chosen because:
+- Handles non-linear relationships well
+- Less prone to overfitting compared to single decision trees
+- Provides feature importance out-of-the-box
+- Doesn't require feature scaling
+- Good performance with minimal tuning</p>
+<p>This is definitely something we should improve - doing proper hyperparameter optimization and algorithm comparison.</p>
+<h2 id="answer-8-question-design-and-validation">Answer 8: Question Design and Validation</h2>
+<p><strong>This is our weakest area po - we don't have documented psychological validation.</strong></p>
+<p>Looking at the system:
+- We have 70 total questions (30 general + 40 program-specific)
+- Questions are Yes/No format
+- Grouped into Aptitude, Interest, Personality categories</p>
+<p>But honestly:
+- <strong>NO involvement ng licensed psychologists</strong> in question design (that we know of)
+- <strong>NO theoretical framework</strong> explicitly documented (should be based on Holland's RIASEC or similar)
+- <strong>NO reliability testing</strong> (test-retest reliability, internal consistency)
+- <strong>NO validity testing</strong> (construct validity, predictive validity)</p>
+<p>The question_weights_map.py provides weights but doesn't explain the psychometric basis. <strong>This would be a major red flag sa actual deployment</strong> - career assessment tools need to be validated instruments.</p>
+<h2 id="answer-9-real-time-prediction-and-performance">Answer 9: Real-time Prediction and Performance</h2>
+<p><strong>Looking at the system architecture:</strong></p>
+<p>Prediction happens sa PHP side using Python via <code>shell_exec()</code> or similar. Performance concerns:
+- <strong>Model loading</strong>: The .pkl files need to be loaded every prediction if not cached
+- <strong>500 trees</strong>: Each tree needs to traverse to make a prediction
+- With proper implementation, prediction should be &lt;1-2 seconds per student</p>
+<p><strong>For 100 simultaneous users</strong>:
+- Current architecture <strong>would NOT scale well</strong> - synchronous processing would create bottleneck
+- NO caching mechanism visible in the code
+- NO load balancing or queue system</p>
+<p>Optimizations needed:
+- Keep models loaded in memory (use a Python service/API instead of shell_exec)
+- Implement Redis or similar caching
+- Use async/queue system for predictions
+- Consider model compression or quantization</p>
+<p>Currently <strong>NOT production-ready for high concurrent users</strong>.</p>
+<h2 id="answer-10-handling-model-updates-without-breaking-production">Answer 10: Handling Model Updates Without Breaking Production</h2>
+<p><strong>We have NO formal deployment strategy po.</strong></p>
+<p>Currently:
+- Model files are just <code>.pkl</code> files na pwedeng i-overwrite
+- <strong>NO versioning</strong> - walang career_model_v1.pkl, career_model_v2.pkl
+- <strong>NO A/B testing</strong> capability
+- <strong>NO rollback mechanism</strong>
+- <strong>NO backward compatibility checks</strong></p>
+<p>Pag nag-update ng model:
+- Old predictions are stored sa database with the career name lang
+- If career names change or model changes, <strong>NO automatic recomputation</strong>
+- This could lead to inconsistencies</p>
+<p><strong>Proper solution should include</strong>:
+- Model versioning (with metadata: training date, metrics, dataset version)
+- Blue-green deployment strategy
+- Prediction logging with model version used
+- Rollback mechanism if new model performs worse</p>
+<p>This is a <strong>major gap</strong> for production deployment.</p>
+<h2 id="answer-11-explainability-and-transparency">Answer 11: Explainability and Transparency</h2>
+<p><strong>Limited explainability po currently.</strong></p>
+<p>What we have:
+- Feature importance at model level (lines 277-285 in train.py) - pero overall lang, not per prediction
+- Random Forest gives prediction probabilities - pwede nating gamitin as confidence scores</p>
+<p>What we DON'T have:
+- <strong>Per-prediction explanation</strong> - "You were recommended Data Scientist because you scored high on Apt_Q3, Int_Q7, CS_Q5..."
+- <strong>Feature contribution breakdown</strong> for individual predictions
+- <strong>Alternative career rankings</strong> with similarity scores
+- <strong>Visual explanation</strong> of decision path</p>
+<p><strong>To improve</strong>:
+- Use <code>model.predict_proba()</code> for confidence scores
+- Implement SHAP (SHapley Additive exPlanations) or LIME for feature importance per prediction
+- Show top 3-5 career recommendations with percentages
+- Provide detailed breakdown: "Strong match in Programming Aptitude (90%), Problem-solving (85%)..."</p>
+<p>Career decisions need transparency - <strong>current system is too much of a "black box"</strong>.</p>
+<h2 id="answer-12-ethical-considerations-and-fairness">Answer 12: Ethical Considerations and Fairness</h2>
+<p><strong>We have NOT conducted any fairness audit po.</strong></p>
+<p>Current gaps:
+- <strong>NO demographic data</strong> collected (gender, age, socioeconomic status) - so we can't even test for bias
+- <strong>NO accessibility features</strong> for students with disabilities
+- <strong>NO safeguards</strong> against potentially harmful recommendations
+- <strong>NO disclaimer</strong> visible in the code about limitations</p>
+<p>Potential biases:
+- If training data has gender stereotypes (e.g., more males in CS careers), model might learn this
+- Program-specific weights might favor certain programs unfairly
+- Missing career paths (e.g., entrepreneurship, creative fields, trades) limits options</p>
+<p><strong>What we SHOULD have</strong>:
+- Clear disclaimer: "This is a guidance tool, not a definitive career prescription"
+- Option to override or ignore recommendations
+- Manual review by career counselor before finalizing
+- Regular bias audits across demographics
+- Diverse career options including non-traditional paths
+- Appeals process if student disagrees</p>
+<p><strong>This is critically important</strong> - automated decision-making in education has high stakes.</p>
+<h2 id="answer-13-integration-with-consultation-system">Answer 13: Integration with Consultation System</h2>
+<p><strong>You're absolutely right - walang integration po.</strong></p>
+<p>Looking at consultation_calendar.php:
+- It's purely a scheduling system (FullCalendar implementation)
+- Shows morning/afternoon availability
+- <strong>NO connection to ML predictions</strong>
+- <strong>NO feedback mechanism</strong></p>
+<p>Wasted opportunity for:
+- <strong>Human-in-the-loop learning</strong>: Counselor validates or corrects ML recommendations
+- <strong>Active learning</strong>: System learns from corrections
+- <strong>Continuous improvement</strong>: Feedback loop for model retraining
+- <strong>Consultation notes</strong>: Could be used as additional features</p>
+<p><strong>Ideal flow should be</strong>:
+1. Student takes assessment → ML recommendation
+2. Student books consultation → counselor reviews ML recommendation
+3. Counselor provides feedback (agree/disagree, alternative suggestions)
+4. Feedback stored in database
+5. Periodic retraining using feedback data</p>
+<p>Currently consultation and ML are <strong>completely disconnected</strong> - major design flaw.</p>
+<h2 id="answer-14-missing-data-handling">Answer 14: Missing Data Handling</h2>
+<p><strong>Good catch - yung -1 encoding is problematic.</strong></p>
+<p>Current approach (line 95 in train.py):</p>
+<pre><code class="language-python">df[col] = df[col].fillna(-1).astype(int)  # -1 for N/A
+</code></pre>
+<p><strong>Problems</strong>:
+- Creates an artificial third category: Yes(1), No(0), N/A(-1)
+- Model might learn patterns from N/A that don't exist
+- Accidentally skipped vs intentionally skipped are treated the same
+- Distance-based metrics get weird (is N/A closer to Yes or No?)</p>
+<p><strong>Our current policy</strong> (based on the forms):
+- All questions appear to be <strong>required</strong> based on the assessment structure
+- No visible "Skip" or "Prefer not to answer" option
+- Form validation should prevent submission with missing answers</p>
+<p><strong>But in Excel dataset</strong>, N/A might exist for program-specific questions if student is from different program.</p>
+<p><strong>Better approaches</strong>:
+- Use imputation (mean, mode, or model-based)
+- Treat missing as separate feature: "Is_Missing_Apt_Q1" binary column
+- Require all relevant questions (based on program)
+- Allow "Unsure" as valid response option instead of forcing Yes/No</p>
+<p><strong>Sensitivity analysis</strong>: We haven't tested how many missing values cause prediction quality to degrade.</p>
+<h2 id="answer-15-career-market-relevance-and-updates">Answer 15: Career Market Relevance and Updates</h2>
+<p><strong>We have NO mechanism for keeping careers updated po.</strong></p>
+<p>Current system:
+- Fixed career list baked into training data
+- career_weights_map.py has hardcoded careers
+- NO automated market research integration
+- NO trend analysis</p>
+<p><strong>Problems</strong>:
+- Emerging careers (Prompt Engineer, MLOps Specialist, Cloud Architect) missing
+- Obsolete careers might still be recommended
+- Regional job market not considered (Philippines vs global market)
+- Salary trends, demand, growth projections not factored</p>
+<p><strong>What we SHOULD implement</strong>:
+1. <strong>Annual career list review</strong> with industry partners
+2. <strong>Job market API integration</strong> (LinkedIn, Indeed, JobStreet APIs)
+3. <strong>Demand weighting</strong>: Factor in current job openings, salary trends
+4. <strong>Alumni tracking</strong>: Where do graduates actually end up?
+5. <strong>Career clustering</strong>: Group similar/related careers so new ones can be added without full retraining
+6. <strong>Versioned career taxonomies</strong>: Map old career names to updated ones</p>
+<p><strong>Realistically</strong>, career list should be reviewed <strong>every 6-12 months</strong> minimum, with major model retraining yearly.</p>
+<p>Without updates, the system becomes obsolete quickly - <strong>technology careers evolve rapidly</strong>.</p>
+<hr />
+<p><strong>Overall Assessment:</strong></p>
+<p>Po, based sa mga answers na ito, makikita na yung system is:
+- ✅ <strong>Technically functional</strong> - ML pipeline works, models train successfully
+- ✅ <strong>Architecturally sound</strong> - Random Forest is appropriate choice
+- ⚠️ <strong>Academically incomplete</strong> - lacks validation, testing, documentation
+- ❌ <strong>Not production-ready</strong> - scalability, ethics, explainability issues
+- ❌ <strong>Missing operational aspects</strong> - no deployment strategy, monitoring, feedback loops</p>
+<p><strong>It's a good academic proof-of-concept pero needs substantial work before actual student deployment.</strong> The risks of giving students potentially incorrect or biased career advice are too high without proper validation and safeguards.</p>
+<pre><code class="language-python">df[col] = df[col].fillna(-1).astype(int)  # -1 for N/A
+</code></pre>
+<hr />
+<p><strong>User</strong></p>
+<p>give me more question </p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Sige, here are more challenging questions from the panel:</p>
+<h2 id="question-16-cross-validation-and-overfitting-prevention">Question 16: Cross-Validation and Overfitting Prevention</h2>
+<p>Nakita ko sa code na nag-single train/test split lang kayo (80/20). Bakit hindi kayo gumamit ng <strong>k-fold cross-validation</strong> para mas robust yung evaluation? Paano niyo nasigurado na yung 90%+ accuracy ay hindi dahil sa overfitting or lucky split lang? May ginawa ba kayong:
+- Learning curves analysis?
+- Validation curves para sa hyperparameters?
+- Out-of-time validation (if applicable)?</p>
+<p>Also, with 500 trees and max_depth=20, malaki ang risk ng overfitting. How do you monitor this?</p>
+<h2 id="question-17-program-transfer-and-career-shifting-scenarios">Question 17: Program Transfer and Career Shifting Scenarios</h2>
+<p>Real-world scenario: Student starts in IT program, takes the assessment, gets recommendations. Then after 1 year, nag-shift siya to CS program. Does the student need to <strong>retake the entire 70-question assessment</strong>, or can you reuse the 30 general questions and only retake CS-specific ones? </p>
+<p>Paano yung data portability? Can students see their historical assessments and compare how their interests/aptitudes evolved over time? This would be valuable for guidance counseling pero wala akong nakita sa system.</p>
+<h2 id="question-18-model-interpretability-for-non-technical-stakeholders">Question 18: Model Interpretability for Non-Technical Stakeholders</h2>
+<p>Your target users include <strong>guidance counselors, parents, and administrators</strong> who may not have ML background. How would you explain to them:
+- "Bakit Random Forest and hindi simple rules-based system?"
+- "What does 92% accuracy mean in practical terms?"
+- "How many students out of 100 might get wrong recommendations?"</p>
+<p>May ginawa ba kayong <strong>non-technical documentation</strong> or visual dashboard para ma-understand nila yung system? Pano niyo ide-defend yung ML approach vs traditional career counseling methods?</p>
+<h2 id="question-19-edge-cases-and-boundary-conditions">Question 19: Edge Cases and Boundary Conditions</h2>
+<p>Ano mangyayari sa <strong>edge cases</strong>:
+- Student na nag-answer ng "Yes" sa lahat ng 70 questions?
+- Student na nag-answer ng "No" sa lahat?
+- Student with contradictory answers (e.g., high programming aptitude pero low CS interest)?
+- Student whose profile matches multiple careers equally (50-50-50 probability)?
+- Student na deliberately trying to game the system para makuha yung gusto niyang career?</p>
+<p>Have you tested these scenarios? May safeguards ba or validation logic to detect suspicious response patterns?</p>
+<h2 id="question-20-feature-engineering-rationale">Question 20: Feature Engineering Rationale</h2>
+<p>You're creating relevance features (lines 160-174 in train.py):</p>
+<pre><code class="language-python">for program_code in [&quot;CS&quot;, &quot;IT&quot;, &quot;IS&quot;, &quot;ACT&quot;]:
+    feature_name = f&quot;Relevance_{program_code}&quot;
+</code></pre>
+<p><strong>Why add these features when you already have Program_Encoded?</strong> Isn't this redundant? You're basically creating one-hot encoding manually. Did you test model performance <strong>with and without</strong> these relevance features to see if they actually improve predictions? May evidence ba na they add value beyond the encoded program column?</p>
+<h2 id="question-21-training-data-labeling-process">Question 21: Training Data Labeling Process</h2>
+<p>Yung 10,834 samples with "Recommended_Career" labels - sino nag-decide kung ano yung correct career para sa each combination of answers? If synthetic data ito:
+- What was the <strong>labeling logic or rules</strong>?
+- May expert validation ba (career counselors reviewed the mappings)?
+- How do you know the labels are correct?</p>
+<p><strong>This is critical</strong> - if your training labels are wrong or arbitrary, the model learns wrong patterns. Garbage in, garbage out. Can you walk us through the data generation and labeling process?</p>
+<h2 id="question-22-comparison-with-baseline">Question 22: Comparison with Baseline</h2>
+<p>You report 90%+ accuracy, but <strong>compared to what?</strong> Para sabihin na yung model is "good", you need a baseline:
+- Random guessing baseline (1/number_of_careers)?
+- Majority class baseline (always predict most common career)?
+- Simple decision tree baseline?
+- Human expert baseline (counselor predictions)?</p>
+<p>Without baseline comparison, we don't know if 90% is impressive or just okay. May comparative analysis ba kayo?</p>
+<h2 id="question-23-handling-of-na-program-specific-questions">Question 23: Handling of N/A Program-Specific Questions</h2>
+<p>Looking at the data structure: CS students answer CS_Q1-Q10, IT students answer IT_Q1-Q10, etc. But yung feature matrix includes ALL question columns. So:
+- CS student has real values for CS_Q1-Q10 pero what about IT_Q1-Q10, IS_Q1-Q10, ACT_Q1-Q10?
+- Are these set to -1 (N/A)?
+- <strong>Isn't this leaking information</strong> to the model? (Model learns "if IT questions are -1, likely CS student")
+- Would it be better to train program-specific models na may different feature sets?</p>
+<p>This seems like a potential flaw in the feature engineering approach. Can you defend this design choice?</p>
+<h2 id="question-24-ethical-consent-and-data-privacy">Question 24: Ethical Consent and Data Privacy</h2>
+<p>For students taking the assessment:
+- May <strong>informed consent</strong> form ba explaining how their data will be used?
+- Is assessment data stored in compliance with Data Privacy Act of 2012?
+- Can students request deletion of their data (right to be forgotten)?
+- Who has access to individual student responses?
+- Are responses anonymized for model training?
+- What if student data leaks - may security measures ba?</p>
+<p>Privacy is especially important kasi psychological assessment data is sensitive. May data governance framework ba kayo?</p>
+<h2 id="question-25-model-monitoring-and-drift-detection">Question 25: Model Monitoring and Drift Detection</h2>
+<p>Once deployed, <strong>how will you monitor model performance over time?</strong> </p>
+<p>Real-world concerns:
+- <strong>Data drift</strong>: Student population changes, new admission policies
+- <strong>Concept drift</strong>: Career landscape evolves, skills become obsolete
+- <strong>Model degradation</strong>: Accuracy decreases over time</p>
+<p>Detection mechanisms:
+- Are you logging predictions with timestamps?
+- Tracking distribution of recommended careers?
+- Monitoring confidence scores?
+- Setting up alerts kung biglang bumaba ang average confidence?</p>
+<p>Without monitoring, you won't know when the model starts failing. May observability strategy ba kayo?</p>
+<h2 id="question-26-computational-cost-and-environmental-impact">Question 26: Computational Cost and Environmental Impact</h2>
+<p>Training a 500-tree Random Forest on 10,834 samples with ~80+ features:
+- How long does training take? (Minutes? Hours?)
+- How much memory consumed?
+- Model file size (.pkl)?
+- Carbon footprint ng training process?</p>
+<p>With <code>n_jobs=-1</code> you're using all CPU cores. For a university with limited resources, is this sustainable? Have you considered <strong>model efficiency trade-offs</strong> (accuracy vs computational cost)? Could you get 85% accuracy with 100 trees and much faster training?</p>
+<h2 id="question-27-multi-lingual-support">Question 27: Multi-Lingual Support</h2>
+<p>Philippines is multilingual (English, Filipino, regional languages). Yung assessment questions are in English ba? What about students na:
+- Hindi fluent sa English?
+- May reading comprehension challenges?
+- Prefer to take assessment in Filipino?</p>
+<p>Does language barrier affect assessment validity? May plans ba for multi-lingual support? This affects accessibility and fairness ng system.</p>
+<h2 id="question-28-integration-with-existing-school-systems">Question 28: Integration with Existing School Systems</h2>
+<p>Realistically, schools already have:
+- Student Information Systems (SIS)
+- Learning Management Systems (LMS)
+- Existing career guidance processes</p>
+<p><strong>How does your system integrate</strong> with these?
+- Single Sign-On (SSO) authentication?
+- Grade/academic record integration for better recommendations?
+- Export results to existing reporting systems?
+- API for third-party integration?</p>
+<p>Stand-alone systems often fail adoption kasi disconnected from workflows. What's your integration strategy?</p>
+<h2 id="question-29-cost-benefit-analysis">Question 29: Cost-Benefit Analysis</h2>
+<p>From an administrative perspective:
+- <strong>Implementation cost</strong>: Hardware, software licenses, training?
+- <strong>Maintenance cost</strong>: Annual retraining, updates, support?
+- <strong>Opportunity cost</strong>: Is ML approach worth it vs hiring more human counselors?
+- <strong>Expected benefits</strong>: Quantifiable improvements in career placement, student satisfaction?</p>
+<p>Have you done a <strong>cost-benefit analysis</strong> or return on investment (ROI) study? How would you convince school administrators to invest in this system?</p>
+<h2 id="question-30-failure-mode-analysis">Question 30: Failure Mode Analysis</h2>
+<p>What are the worst-case scenarios and how do you handle them:
+- <strong>Model completely fails</strong> (all predictions are wrong)
+- <strong>System goes down</strong> during peak assessment period (enrollment season)
+- <strong>Security breach</strong> exposes student data
+- <strong>Legal challenge</strong> - student blames wrong career recommendation for their failures
+- <strong>Model bias discovered</strong> after deployment affecting certain groups</p>
+<p>Do you have:
+- Fallback mechanisms?
+- Incident response plan?
+- Insurance or liability coverage?
+- Disaster recovery procedures?</p>
+<p>Systems that affect people's lives need robust failure handling. What's your risk mitigation strategy?</p>
+<hr />
+<p><strong>Panel's Observation:</strong></p>
+<p>Alam mo, yung technical implementation niyo is decent for an academic project. Pero what we're probing now is yung <strong>production readiness, ethical considerations, and real-world viability</strong>. </p>
+<p>Sa actual deployment, hindi lang coding ang importante - you need to think about:
+- 📊 <strong>Validation and testing</strong> (scientific rigor)
+- ⚖️ <strong>Ethics and fairness</strong> (social responsibility)<br />
+- 🔧 <strong>Operations and maintenance</strong> (sustainability)
+- 💰 <strong>Business value</strong> (practicality)
+- 🛡️ <strong>Risk management</strong> (safety)</p>
+<p>These questions test kung ready kayo mag-deploy ng system na mag-aaffect ng lives of hundreds or thousands of students. Take time to think through these deeply. </p>
+<p><em>Ano, kakayanin niyo ba? May follow-up questions pa kami depende sa sagot.</em> 😊</p>
+<pre><code class="language-python">for program_code in [&quot;CS&quot;, &quot;IT&quot;, &quot;IS&quot;, &quot;ACT&quot;]:
+    feature_name = f&quot;Relevance_{program_code}&quot;
+</code></pre>
+<hr />
+<p><strong>User</strong></p>
+<p>answer it</p>
+<hr />
+<p><strong>Cursor</strong></p>
+<p>Sige po, let me answer all these questions:</p>
+<h2 id="answer-16-cross-validation-and-overfitting-prevention">Answer 16: Cross-Validation and Overfitting Prevention</h2>
+<p><strong>Tama kayo - we only use single train/test split (80/20).</strong></p>
+<p>Looking at lines 238-242 in train.py:</p>
+<pre><code class="language-python">X_train, X_test, y_train, y_test = train_test_split(
+    X, y_encoded, test_size=0.20, random_state=42, stratify=y_encoded
+)
+</code></pre>
+<p><strong>Why no k-fold cross-validation?</strong>
+- Honestly, it's a simplification for faster training
+- With 10,834 samples, single split should be representative
+- We use <code>stratify</code> to ensure balanced class distribution</p>
+<p><strong>What we DON'T have:</strong>
+- ❌ Learning curves analysis
+- ❌ Validation curves for hyperparameters
+- ❌ Multiple random seeds testing
+- ❌ Out-of-time validation</p>
+<p><strong>For overfitting detection</strong>, we only compare train vs test accuracy informally. We should implement:
+- Plot learning curves (train/test accuracy vs training size)
+- Monitor train accuracy during fit (currently <code>verbose=0</code>)
+- Use early stopping if train accuracy &gt;&gt; test accuracy</p>
+<p><strong>This is a weakness</strong> - one lucky split could give inflated metrics. K-fold cross-validation (5-10 folds) would give more robust estimates with confidence intervals.</p>
+<h2 id="answer-17-program-transfer-and-career-shifting-scenarios">Answer 17: Program Transfer and Career Shifting Scenarios</h2>
+<p><strong>Current system does NOT support program transfers efficiently.</strong></p>
+<p>Problems:
+- Each assessment is treated as independent
+- NO historical tracking of previous assessments
+- Students would need to <strong>retake all 70 questions</strong>
+- NO data portability or comparison features</p>
+<p>What should happen:
+- Store assessment history with timestamps in database
+- Reuse 30 general questions (Apt, Int, Pers) - these don't change with program
+- Only retake new program-specific questions (10 questions instead of 70)
+- Dashboard showing evolution: "Your programming aptitude increased from 6/10 to 8/10"</p>
+<p><strong>Currently walang mechanism for this</strong> - each assessment is a fresh start. This is poor UX and wastes student time. A transfer student essentially starts from zero.</p>
+<p>We should add:
+- <code>assessment_history</code> table with versioning
+- API endpoint to retrieve previous general assessments
+- UI to show "You took this assessment on Jan 2024 as IT student, retake only CS questions?"</p>
+<h2 id="answer-18-model-interpretability-for-non-technical-stakeholders">Answer 18: Model Interpretability for Non-Technical Stakeholders</h2>
+<p><strong>We have ZERO non-technical documentation po.</strong></p>
+<p>To explain to counselors/parents:
+- <strong>"Bakit Random Forest?"</strong>: "Think of it like asking 500 different career counselors, each looking at different aspects of the student's profile, then taking a majority vote. More reliable than one person's opinion."</p>
+<ul>
+<li>
+<p><strong>"What does 92% accuracy mean?"</strong>: "Out of 100 students, 92 will get accurate recommendations aligned with their skills and interests. 8 might need manual counselor review."</p>
+</li>
+<li>
+<p><strong>"Practical implications"</strong>: "The system is like a screening tool - it narrows down 50+ careers to top 3-5 matches, then human counselors do the final guidance."</p>
+</li>
+</ul>
+<p><strong>What we're missing:</strong>
+- Non-technical user manual
+- Visual dashboard for counselors
+- Case studies or examples
+- Comparison charts (ML vs traditional methods)
+- FAQ section for common concerns</p>
+<p><strong>Defense ng ML approach:</strong>
+- ✅ Consistent - walang personal bias or bad day ng counselor
+- ✅ Scalable - handle hundreds of students simultaneously
+- ✅ Data-driven - based on patterns, not intuition
+- ❌ But NOT a replacement for human counselors - <strong>augmentation tool lang</strong></p>
+<p>We need better communication strategy for stakeholders.</p>
+<h2 id="answer-19-edge-cases-and-boundary-conditions">Answer 19: Edge Cases and Boundary Conditions</h2>
+<p><strong>We have NOT explicitly tested edge cases.</strong></p>
+<p>Let me think through scenarios:</p>
+<p><strong>All "Yes" student:</strong>
+- All features = 1.0
+- After question weights applied, some features amplified
+- Model might predict "generalist" career or get confused
+- <strong>No validation to detect this suspicious pattern</strong></p>
+<p><strong>All "No" student:</strong>
+- All features = 0.0 (or after weights, still very low)
+- Model trained mostly on mixed Yes/No patterns
+- Likely to give low-confidence prediction
+- <strong>No minimum threshold check</strong></p>
+<p><strong>Contradictory answers:</strong>
+- High Apt_Q1-Q10 (programming skills) but low CS_Int_Q1-Q10 (no interest)
+- Random Forest can handle this - trees will split on whatever signal is stronger
+- But <strong>no flagging system</strong> to alert counselor about contradictions</p>
+<p><strong>Equal probability careers (tie):</strong>
+- If top 3 careers are 33%, 32%, 31%
+- System just picks highest (33%)
+- <strong>Should flag as "uncertain" and require counselor review</strong></p>
+<p><strong>Gaming the system:</strong>
+- Student googles "What answers make me get Data Scientist?"
+- No detection for:
+  - Too-perfect answers matching a specific career stereotype
+  - Response time (answered 70 questions in 30 seconds)
+  - Pattern consistency checks</p>
+<p><strong>We need validation layer:</strong></p>
+<pre><code class="language-python"># Pseudocode we should add
+if all_yes or all_no:
+    flag = &quot;SUSPICIOUS_PATTERN&quot;
+if max_probability &lt; 0.40:
+    flag = &quot;LOW_CONFIDENCE&quot;
+if contradiction_detected:
+    flag = &quot;INCONSISTENT_RESPONSES&quot;
+</code></pre>
+<h2 id="answer-20-feature-engineering-rationale">Answer 20: Feature Engineering Rationale</h2>
+<p><strong>Good question - you caught potential redundancy.</strong></p>
+<p>Looking at lines 160-174:</p>
+<pre><code class="language-python">for program_code in [&quot;CS&quot;, &quot;IT&quot;, &quot;IS&quot;, &quot;ACT&quot;]:
+    feature_name = f&quot;Relevance_{program_code}&quot;
+    # Only sets to relevance score if career matches AND program matches
+</code></pre>
+<p><strong>Why add these when Program_Encoded exists?</strong></p>
+<p>Actually, reading more carefully - these features are NOT one-hot encoding. They're:
+- Career-program <strong>relevance scores from career_weights_map</strong>
+- Value is between 0-1 (normalized from 0-3 scale)
+- Only non-zero when career and program match</p>
+<p>So <code>Relevance_CS</code> = 0.8 means "this career is highly relevant to CS program" (NOT just "student is in CS")</p>
+<p><strong>But honestly</strong>, we have NOT tested:
+- ❌ Model performance with vs without relevance features
+- ❌ Feature importance - do relevance features actually rank high?
+- ❌ Ablation study (remove one feature type at a time)</p>
+<p>Looking at the feature importance output (lines 277-285), we print top 10 but don't analyze if relevance features appear.</p>
+<p><strong>This could be redundant</strong> if the model can learn relevance from Program_Encoded + question weights already. We should do ablation testing.</p>
+<h2 id="answer-21-training-data-labeling-process">Answer 21: Training Data Labeling Process</h2>
+<p><strong>This is the elephant in the room po.</strong></p>
+<p>Based on the 10,834 row dataset, paano siya na-generate? Three possibilities:</p>
+<p><strong>Possibility 1: Rule-based synthetic generation</strong></p>
+<pre><code class="language-python"># Pseudocode of likely approach:
+if CS_Q answers mostly Yes AND Apt_Q programming-related are Yes:
+    label = &quot;Software Developer&quot;
+</code></pre>
+<ul>
+<li>Deterministic rules based on expected patterns</li>
+<li>NO expert validation</li>
+<li>Labels might be simplistic or stereotypical</li>
+</ul>
+<p><strong>Possibility 2: Real student data (unlikely)</strong>
+- Would need historical records of students + their actual career outcomes
+- Would take years to collect (need to wait for graduation + job placement)
+- Unlikely given the project timeline</p>
+<p><strong>Possibility 3: Survey/expert annotation</strong>
+- Career counselors manually labeled synthetic profiles
+- Time-consuming but more reliable
+- No evidence of this in documentation</p>
+<p><strong>Honest answer</strong>: We DON'T have documented provenance of the labels. This is a <strong>critical flaw</strong> for a supervised learning system. If labels are arbitrary or rule-based:
+- Model just learns to replicate the rules
+- Not actually learning from real-world patterns
+- "Garbage in, garbage out"</p>
+<p><strong>What we SHOULD have</strong>:
+- Label provenance documentation
+- Inter-rater reliability (multiple counselors label same profile, measure agreement)
+- Ground truth validation (follow up with students years later)
+- Confidence scores per label (some labels more certain than others)</p>
+<p>Without this, the 90% accuracy is <strong>meaningless</strong> - we're measuring how well we recreate arbitrary labels, not real career success prediction.</p>
+<h2 id="answer-22-comparison-with-baseline">Answer 22: Comparison with Baseline</h2>
+<p><strong>We have NO baseline comparison po.</strong></p>
+<p>Current metrics (line 270-274):</p>
+<pre><code class="language-python">print(f&quot;Accuracy:  {acc * 100:.2f}%&quot;)
+print(f&quot;Precision: {precision * 100:.2f}%&quot;)
+...
+</code></pre>
+<p>But <strong>compared to what?</strong></p>
+<p><strong>Baselines we should include:</strong></p>
+<ol>
+<li><strong>Random guessing</strong>: 1/num_careers (e.g., 1/50 = 2%)</li>
+<li><strong>Majority class</strong>: Always predict most common career</li>
+<li><strong>Stratified random</strong>: Random weighted by class distribution</li>
+<li><strong>Simple decision tree</strong> (max_depth=3): Interpretable baseline</li>
+<li><strong>Logistic regression</strong>: Linear baseline</li>
+<li><strong>Human expert</strong>: Career counselor predictions on test set</li>
+</ol>
+<p><strong>Without baselines</strong>, we can't claim 90% is "good":
+- If majority class is 85% of data, then 90% is only marginally better
+- If random guessing gets 2%, then 90% is impressive
+- If human experts get 95%, then we're underperforming</p>
+<p><strong>We should report</strong>:</p>
+<pre><code>Baseline Comparisons:
+- Random Guessing:     2.1%
+- Majority Class:     18.3%
+- Simple Tree (d=3):  67.2%
+- Random Forest:      92.4% ← Our model
+- Human Expert:       94.1% (goal to beat)
+</code></pre>
+<p>This gives context. Currently, walang context - <strong>just floating metrics</strong>.</p>
+<h2 id="answer-23-handling-of-na-program-specific-questions">Answer 23: Handling of N/A Program-Specific Questions</h2>
+<p><strong>This is a significant design issue you identified.</strong></p>
+<p>Current structure:
+- Feature matrix has ALL columns: Apt_Q1-10, Int_Q1-10, Pers_Q1-10, CS_Q1-10, IT_Q1-10, IS_Q1-10, ACT_Q1-10
+- CS student: real values for CS_Q1-10, pero IT/IS/ACT questions = ???</p>
+<p>Looking at line 95:</p>
+<pre><code class="language-python">df[col] = df[col].fillna(-1).astype(int)  # -1 for N/A
+</code></pre>
+<p>So IT/IS/ACT questions for CS student = <strong>-1</strong></p>
+<p><strong>Why this is information leakage:</strong>
+- Model can learn: "If IT_Q columns are all -1, probably not IT student"
+- This is encoding program information twice (via -1 pattern AND Program_Encoded)
+- The -1 values are informative, not truly missing</p>
+<p><strong>Better approaches:</strong></p>
+<p><strong>Option A: Program-specific models</strong> (like we did with IED)
+- CS model only uses: Apt, Int, Pers, CS questions (40 features)
+- IT model only uses: Apt, Int, Pers, IT questions (40 features)
+- No N/A issues, cleaner feature space
+- But need to maintain multiple models</p>
+<p><strong>Option B: Impute with neutral values</strong>
+- Set non-applicable program questions to 0.5 (neutral)
+- Or impute with column mean
+- Less information leakage</p>
+<p><strong>Option C: Separate feature sets with masking</strong>
+- Use attention mechanism or masking to ignore N/A values
+- More complex implementation</p>
+<p><strong>Current approach is defensible IF</strong>:
+- We're treating -1 as "not applicable, ignore" signal
+- Model learns to ignore these columns via low feature importance
+- We verify that N/A columns don't leak information</p>
+<p>But we haven't verified this. <strong>Feature importance analysis would reveal if N/A patterns are being exploited.</strong></p>
+<h2 id="answer-24-ethical-consent-and-data-privacy">Answer 24: Ethical Consent and Data Privacy</h2>
+<p><strong>We have NO data privacy framework visible in the code.</strong></p>
+<p>Based on Data Privacy Act of 2012 requirements:</p>
+<p><strong>What we're missing:</strong>
+- ❌ <strong>Informed consent form</strong> before assessment
+- ❌ <strong>Privacy policy</strong> explaining data use
+- ❌ <strong>Data retention policy</strong> (how long stored?)
+- ❌ <strong>Right to access</strong> (students view their data)
+- ❌ <strong>Right to deletion</strong> (forget me functionality)
+- ❌ <strong>Access controls</strong> (who can view individual responses?)
+- ❌ <strong>Encryption</strong> at rest and in transit
+- ❌ <strong>Anonymization</strong> for training data
+- ❌ <strong>Audit logs</strong> (who accessed what, when)
+- ❌ <strong>Data breach response plan</strong></p>
+<p><strong>What we SHOULD implement:</strong></p>
+<ol>
+<li><strong>Consent form</strong> (before assessment):</li>
+</ol>
+<pre><code>&quot;Your responses will be used to generate career recommendations
+and may be used in anonymized form to improve our system.
+You can request deletion of your data at any time.&quot;
+[  ] I consent to data collection and processing
+</code></pre>
+<ol>
+<li><strong>Database security</strong>:</li>
+<li>Encrypted passwords (should be using password_hash)</li>
+<li>Row-level security (students only see their data)</li>
+<li>
+<p>Separate PII from assessment responses (different tables)</p>
+</li>
+<li>
+<p><strong>Anonymization for training</strong>:</p>
+</li>
+<li>Remove school_id, names before exporting training data</li>
+<li>Use synthetic IDs</li>
+<li>
+<p>Aggregate data to prevent re-identification</p>
+</li>
+<li>
+<p><strong>Access controls</strong> in code:</p>
+</li>
+</ol>
+<pre><code class="language-php">// Should check role-based access
+if ($_SESSION['role'] !== 'admin' &amp;&amp; $student_id !== $_SESSION['school_id']) {
+    die(&quot;Unauthorized access&quot;);
+}
+</code></pre>
+<p><strong>Risk if we don't comply:</strong>
+- Legal liability under DPA 2012
+- Fines up to ₱5 million
+- Loss of student trust
+- University reputation damage</p>
+<p><strong>This is NON-NEGOTIABLE for production deployment.</strong></p>
+<h2 id="answer-25-model-monitoring-and-drift-detection">Answer 25: Model Monitoring and Drift Detection</h2>
+<p><strong>We have ZERO monitoring infrastructure.</strong></p>
+<p>Once deployed, the model runs blind - no visibility into:
+- Prediction distribution over time
+- Confidence score trends
+- User satisfaction
+- Model performance degradation</p>
+<p><strong>What we need:</strong></p>
+<p><strong>1. Prediction Logging</strong></p>
+<pre><code class="language-php">// Should log every prediction
+INSERT INTO prediction_logs (
+    student_id, timestamp, predicted_career, 
+    confidence_score, model_version, program
+)
+</code></pre>
+<p><strong>2. Monitoring Dashboard</strong>
+- Distribution of predictions (are 80% students getting "Data Scientist"?)
+- Average confidence over time (dropping = model drift)
+- Response time metrics
+- Error rate tracking</p>
+<p><strong>3. Drift Detection</strong></p>
+<pre><code class="language-python"># Compare current month vs training data distribution
+from scipy.stats import ks_test
+current_dist = get_current_predictions()
+training_dist = get_training_distribution()
+statistic, pvalue = ks_test(current_dist, training_dist)
+if pvalue &lt; 0.05:
+    alert(&quot;Distribution drift detected! Model may need retraining&quot;)
+</code></pre>
+<p><strong>4. Alerting</strong>
+- Slack/email notification if confidence drops below threshold
+- Weekly model health reports
+- Anomaly detection (sudden spike in one career recommendation)</p>
+<p><strong>5. A/B Testing Framework</strong>
+- Deploy new model to 10% of users
+- Compare satisfaction/confidence with old model
+- Gradual rollout if metrics improve</p>
+<p><strong>Without monitoring</strong>, model could be failing for months without detection. Students get bad recommendations, we don't know.</p>
+<p><strong>This is essential for production ML systems.</strong></p>
+<h2 id="answer-26-computational-cost-and-environmental-impact">Answer 26: Computational Cost and Environmental Impact</h2>
+<p><strong>We haven't measured computational costs.</strong></p>
+<p>Let me estimate based on the configuration:</p>
+<p><strong>Training costs:</strong>
+- 500 trees × 10,834 samples × ~80 features
+- With <code>n_jobs=-1</code> (all CPU cores)
+- Estimated time: <strong>5-15 minutes</strong> on modest laptop (depends on CPU)
+- Memory: <strong>~2-4 GB</strong> during training
+- Model file size: Check ml folder - likely <strong>20-50 MB</strong> per .pkl file</p>
+<p><strong>Carbon footprint:</strong>
+- Single training run on laptop: negligible (~0.01 kWh)
+- But if retraining weekly for years: adds up
+- No GPU usage, so relatively efficient</p>
+<p><strong>Efficiency trade-offs analysis:</strong></p>
+<p>Let me hypothesize:
+- 100 trees: ~2 min training, 88% accuracy, 5 MB model
+- 300 trees: ~6 min training, 91% accuracy, 15 MB model
+- 500 trees: ~12 min training, 92% accuracy, 25 MB model ← current
+- 1000 trees: ~25 min training, 92.5% accuracy, 50 MB model</p>
+<p><strong>Diminishing returns after 300-500 trees.</strong> We should do this analysis:</p>
+<pre><code class="language-python"># Test different n_estimators
+for n in [50, 100, 200, 300, 500, 1000]:
+    start_time = time.time()
+    model = RandomForestClassifier(n_estimators=n, ...)
+    model.fit(X_train, y_train)
+    train_time = time.time() - start_time
+    accuracy = model.score(X_test, y_test)
+    model_size = get_model_size(model)
+    print(f&quot;{n} trees: {train_time:.1f}s, {accuracy:.3f}, {model_size}MB&quot;)
+</code></pre>
+<p><strong>For university with limited resources:</strong>
+- 200-300 trees might be sweet spot
+- Slightly lower accuracy but 5x faster training
+- Easier to iterate and experiment</p>
+<p><strong>We chose 500 based on "more is better" but didn't optimize.</strong> This should be data-driven decision.</p>
+<h2 id="answer-27-multi-lingual-support">Answer 27: Multi-Lingual Support</h2>
+<p><strong>System is English-only currently.</strong></p>
+<p>Looking at the assessment questions (would need to check actual forms), they're likely in English. This creates:</p>
+<p><strong>Accessibility barriers:</strong>
+- Students not fluent in English may misunderstand questions
+- Reading comprehension affects assessment validity
+- Rural students may be disadvantaged
+- Violates inclusive education principles</p>
+<p><strong>Impact on validity:</strong>
+- Student might have high programming aptitude pero low English proficiency
+- They answer "No" not because of lack of interest, but language barrier
+- Results don't reflect true aptitude/interest</p>
+<p><strong>What we need:</strong></p>
+<p><strong>1. Multi-lingual question bank</strong>
+- English version (default)
+- Filipino/Tagalog version
+- Regional languages (Cebuano, Ilocano, etc.)
+- Language selector at start of assessment</p>
+<p><strong>2. Translation quality</strong>
+- Professional translation (not Google Translate)
+- Validation by native speakers
+- Cultural adaptation (some concepts don't translate directly)
+- Back-translation testing</p>
+<p><strong>3. Model implications</strong>
+- Train separate models per language? NO - same model, just different question text
+- Features are 1/0 values, language-independent
+- But question weights might differ (cultural context)</p>
+<p><strong>4. Accessibility features</strong>
+- Text-to-speech for visually impaired
+- Simple language option
+- Visual aids/icons
+- Adjustable font sizes</p>
+<p><strong>Current system excludes non-English speakers</strong> - major equity issue for Philippine context where many students are more comfortable in Filipino.</p>
+<h2 id="answer-28-integration-with-existing-school-systems">Answer 28: Integration with Existing School Systems</h2>
+<p><strong>System is completely standalone - NO integration.</strong></p>
+<p>Looking at authentication (line 2-6 in consultation_calendar.php):</p>
+<pre><code class="language-php">session_start();
+if (!isset($_SESSION['school_id']) || $_SESSION['role'] !== 'student') {
+    header(&quot;Location: ../login.php&quot;);
+</code></pre>
+<p>Custom session-based auth - not integrated with university SSO.</p>
+<p><strong>What's missing:</strong></p>
+<p><strong>1. Authentication Integration</strong>
+- No LDAP/Active Directory integration
+- No OAuth/SAML for SSO
+- Students need separate login
+- Password management burden</p>
+<p><strong>2. Student Data Integration</strong>
+- No API to pull student info (program, year level, grades) from SIS
+- Manual data entry required
+- Risk of inconsistencies</p>
+<p><strong>3. Results Export</strong>
+- No standard format export (PDF, CSV, API)
+- Cannot push results to existing systems
+- Counselors need to access separate platform</p>
+<p><strong>4. API Documentation</strong>
+- No REST API for third-party integration
+- No webhooks for real-time updates
+- Tightly coupled system</p>
+<p><strong>Why this matters:</strong>
+- <strong>Adoption barrier</strong>: Faculty/staff resist using yet another system
+- <strong>Data silos</strong>: Career data separate from academic data
+- <strong>Duplicate work</strong>: Students enter info multiple times
+- <strong>Maintenance burden</strong>: Separate user management</p>
+<p><strong>What we should have:</strong></p>
+<pre><code class="language-php">// SSO Integration example
+require 'vendor/cas-auth/cas.php';
+phpCAS::client(CAS_VERSION_2_0, 'sso.university.edu', 443, '/cas');
+phpCAS::forceAuthentication();
+$school_id = phpCAS::getUser();
+
+// SIS API Integration
+$student_data = fetch_from_sis($school_id);
+$program = $student_data['program'];
+$year_level = $student_data['year_level'];
+</code></pre>
+<p><strong>Integration strategy needed before deployment.</strong></p>
+<h2 id="answer-29-cost-benefit-analysis">Answer 29: Cost-Benefit Analysis</h2>
+<p><strong>No formal cost-benefit analysis exists.</strong></p>
+<p>Let me outline what should be analyzed:</p>
+<p><strong>Implementation Costs:</strong>
+- <strong>Hardware</strong>: ~₱50,000-100,000 (server with adequate RAM/CPU)
+- <strong>Software</strong>: ₱0 (open source stack)
+- <strong>Development</strong>: Already done (but ~500-1000 hours of student/faculty time)
+- <strong>Training</strong>: ₱20,000-50,000 (training counselors, staff, admin)
+- <strong>Integration</strong>: ₱100,000-200,000 (if integrating with existing systems)
+- <strong>Total upfront</strong>: ~₱170,000-350,000</p>
+<p><strong>Annual Maintenance:</strong>
+- <strong>Hosting</strong>: ₱30,000-60,000/year (cloud or on-prem maintenance)
+- <strong>Model retraining</strong>: 40 hours/year (faculty/student time)
+- <strong>Support</strong>: 100 hours/year
+- <strong>Updates</strong>: ₱20,000-50,000/year
+- <strong>Total annual</strong>: ~₱50,000-110,000/year</p>
+<p><strong>Opportunity Cost:</strong>
+- <strong>Alternative</strong>: Hire 1-2 additional career counselors
+- <strong>Counselor salary</strong>: ₱300,000-400,000/year each
+- <strong>System is cheaper</strong> IF it augments (not replaces) counselors</p>
+<p><strong>Expected Benefits (5-year projection):</strong>
+- <strong>Efficiency</strong>: Handle 500-1000 students/year vs 200-300 manually
+- <strong>Consistency</strong>: Reduce bias in recommendations
+- <strong>Scalability</strong>: No linear cost increase with more students
+- <strong>Data insights</strong>: Analytics on student trends
+- <strong>Early intervention</strong>: Identify at-risk students early
+- <strong>Quantifiable value</strong>: ~₱1-2M over 5 years in counselor time saved</p>
+<p><strong>ROI Calculation:</strong></p>
+<pre><code>Total 5-year cost: ₱350k + (₱80k × 5) = ₱750k
+Total 5-year benefit: ₱1.5M (time saved + better outcomes)
+ROI = (₱1.5M - ₱750k) / ₱750k = 100% ROI
+Payback period: ~2.5 years
+</code></pre>
+<p><strong>But intangible benefits matter more:</strong>
+- Improved student satisfaction and outcomes
+- Enhanced university reputation
+- Better career placement rates
+- Competitive advantage for recruitment</p>
+<p><strong>To convince administrators:</strong>
+- Pilot study with one program (CS) first
+- Measure satisfaction increase
+- Track career placement rates
+- Scale if successful</p>
+<p><strong>Without data, hard to justify investment.</strong> Pilot + measurement is key.</p>
+<h2 id="answer-30-failure-mode-analysis">Answer 30: Failure Mode Analysis</h2>
+<p><strong>We have NO disaster recovery or risk mitigation plan.</strong></p>
+<p>Let me map out failure scenarios:</p>
+<p><strong>Failure Mode 1: Model Complete Failure</strong>
+- <strong>Scenario</strong>: Bug causes all predictions to be wrong or system error
+- <strong>Current mitigation</strong>: NONE
+- <strong>Should have</strong>:
+  - Confidence threshold - don't show prediction if &lt;40% confidence
+  - Human review flag system
+  - Fallback to rule-based recommendations
+  - Weekly accuracy spot-checks</p>
+<p><strong>Failure Mode 2: System Downtime</strong>
+- <strong>Scenario</strong>: Server crash during enrollment period (1000 students waiting)
+- <strong>Current mitigation</strong>: NONE
+- <strong>Should have</strong>:
+  - High availability setup (load balancer, multiple servers)
+  - Queue system (students can take assessment, results delivered later)
+  - Status page ("System under maintenance, back in 2 hours")
+  - Offline mode (downloadable PDF assessment, manual processing)</p>
+<p><strong>Failure Mode 3: Security Breach</strong>
+- <strong>Scenario</strong>: SQL injection, student data exposed
+- <strong>Current mitigation</strong>: Hopefully using prepared statements (need to audit)
+- <strong>Should have</strong>:
+  - WAF (Web Application Firewall)
+  - Regular security audits
+  - Encryption at rest
+  - Immediate notification protocol
+  - Incident response team
+  - Cyber insurance (₱50k-100k/year)</p>
+<p><strong>Failure Mode 4: Legal Challenge</strong>
+- <strong>Scenario</strong>: "Your system said I should be a Data Scientist. I failed. I'm suing."
+- <strong>Current mitigation</strong>: NONE
+- <strong>Should have</strong>:
+  - Clear disclaimers: "This is a guidance tool, not a guarantee"
+  - Require counselor co-sign on final recommendation
+  - Liability waiver in consent form
+  - Professional liability insurance
+  - Documentation that student was informed of limitations</p>
+<p><strong>Failure Mode 5: Discovered Bias</strong>
+- <strong>Scenario</strong>: Media reports "University system discriminates against women in STEM careers"
+- <strong>Current mitigation</strong>: NONE
+- <strong>Should have</strong>:
+  - Pre-deployment fairness audit
+  - Quarterly bias monitoring
+  - Independent review board
+  - Transparent methodology documentation
+  - Public apology + model fix protocol
+  - Affected students offered re-assessment</p>
+<p><strong>Risk Mitigation Strategy:</strong></p>
+<p><strong>Tier 1 (Critical - Must Have):</strong>
+- ✅ Confidence thresholds
+- ✅ Human review for borderline cases
+- ✅ Clear disclaimers
+- ✅ Security hardening</p>
+<p><strong>Tier 2 (Important - Should Have):</strong>
+- ⚠️ High availability infrastructure
+- ⚠️ Incident response plan
+- ⚠️ Insurance coverage
+- ⚠️ Monitoring and alerts</p>
+<p><strong>Tier 3 (Nice to Have):</strong>
+- 💡 A/B testing framework
+- 💡 Automated rollback
+- 💡 Comprehensive audit trails</p>
+<p><strong>Current state: ZERO failure handling</strong> - this is unacceptable for production system affecting student futures.</p>
+<hr />
+<h2 id="final-panel-assessment">Final Panel Assessment</h2>
+<p><strong>Okay, based on all your answers (or the realistic assessment of what exists):</strong></p>
+<h3 id="strengths">Strengths ✅</h3>
+<ul>
+<li>Solid ML fundamentals (Random Forest, proper train/test split)</li>
+<li>Multiple program support (CS/IT/IS/ACT + IED)</li>
+<li>Feature engineering with weights (career_weights_map, question_weights_map)</li>
+<li>Working end-to-end pipeline</li>
+<li>Code is reasonably well-structured</li>
+</ul>
+<h3 id="critical-gaps">Critical Gaps ❌</h3>
+<ol>
+<li><strong>No validation framework</strong> - cross-validation, baseline comparison, robustness testing</li>
+<li><strong>No data provenance</strong> - unknown label quality and generation method</li>
+<li><strong>Zero production readiness</strong> - no monitoring, no failure handling, no scaling strategy</li>
+<li><strong>Missing ethical framework</strong> - no fairness audits, privacy compliance, consent</li>
+<li><strong>No integration strategy</strong> - standalone system, adoption barriers</li>
+<li><strong>Weak explainability</strong> - black box to users</li>
+<li><strong>No real-world validation</strong> - never tested with actual students</li>
+</ol>
+<h3 id="risk-level-for-deployment">Risk Level for Deployment 🚨</h3>
+<p><strong>Current system</strong>: <strong>HIGH RISK</strong>
+- Could give harmful incorrect recommendations
+- Legal/ethical liability
+- Privacy violations
+- Cannot scale
+- Cannot maintain</p>
+<p><strong>Recommendation</strong>: 
+- ✅ <strong>APPROVE</strong> as academic proof-of-concept / thesis project
+- ❌ <strong>DO NOT APPROVE</strong> for production deployment without major improvements</p>
+<p><strong>What you need for production:</strong>
+1. <strong>6-12 month pilot</strong> with small group (50-100 students)
+2. <strong>Human-in-the-loop</strong> (counselor reviews all ML recommendations)
+3. <strong>Validation study</strong> (track outcomes, measure satisfaction)
+4. <strong>Security audit</strong> by professional
+5. <strong>Legal review</strong> of consent/liability
+6. <strong>Infrastructure upgrade</strong> for reliability
+7. <strong>Monitoring dashboard</strong> implementation
+8. <strong>Documentation</strong> for all stakeholders</p>
+<p><strong>Estimated additional work</strong>: 500-1000 hours to make production-ready.</p>
+<hr />
+<p><strong>Final question for you</strong>: Kung may chance kayo to start over, ano yung <strong>top 3 things you would do differently</strong> based on everything we discussed? This tests kung nag-sink in yung learnings from the defense. 😊</p>
+<pre><code class="language-python">X_train, X_test, y_train, y_test = train_test_split(
+    X, y_encoded, test_size=0.20, random_state=42, stratify=y_encoded
+)
+</code></pre>
+<pre><code class="language-python"># Pseudocode we should add
+if all_yes or all_no:
+    flag = &quot;SUSPICIOUS_PATTERN&quot;
+if max_probability &lt; 0.40:
+    flag = &quot;LOW_CONFIDENCE&quot;
+if contradiction_detected:
+    flag = &quot;INCONSISTENT_RESPONSES&quot;
+</code></pre>
+<pre><code class="language-python">for program_code in [&quot;CS&quot;, &quot;IT&quot;, &quot;IS&quot;, &quot;ACT&quot;]:
+    feature_name = f&quot;Relevance_{program_code}&quot;
+    # Only sets to relevance score if career matches AND program matches
+</code></pre>
+<pre><code class="language-python"># Pseudocode of likely approach:
+if CS_Q answers mostly Yes AND Apt_Q programming-related are Yes:
+    label = &quot;Software Developer&quot;
+</code></pre>
+<pre><code class="language-python">print(f&quot;Accuracy:  {acc * 100:.2f}%&quot;)
+print(f&quot;Precision: {precision * 100:.2f}%&quot;)
+...
+</code></pre>
+<pre><code class="language-plaintext">Baseline Comparisons:
+- Random Guessing:     2.1%
+- Majority Class:     18.3%
+- Simple Tree (d=3):  67.2%
+- Random Forest:      92.4% ← Our model
+- Human Expert:       94.1% (goal to beat)
+</code></pre>
+<pre><code class="language-python">df[col] = df[col].fillna(-1).astype(int)  # -1 for N/A
+</code></pre>
+<pre><code class="language-plaintext">&quot;Your responses will be used to generate career recommendations
+and may be used in anonymized form to improve our system.
+You can request deletion of your data at any time.&quot;
+[  ] I consent to data collection and processing
+</code></pre>
+<pre><code class="language-php">// Should check role-based access
+if ($_SESSION['role'] !== 'admin' &amp;&amp; $student_id !== $_SESSION['school_id']) {
+    die(&quot;Unauthorized access&quot;);
+}
+</code></pre>
+<pre><code class="language-php">// Should log every prediction
+INSERT INTO prediction_logs (
+    student_id, timestamp, predicted_career, 
+    confidence_score, model_version, program
+)
+</code></pre>
+<pre><code class="language-python"># Compare current month vs training data distribution
+from scipy.stats import ks_test
+current_dist = get_current_predictions()
+training_dist = get_training_distribution()
+statistic, pvalue = ks_test(current_dist, training_dist)
+if pvalue &lt; 0.05:
+    alert(&quot;Distribution drift detected! Model may need retraining&quot;)
+</code></pre>
+<pre><code class="language-python"># Test different n_estimators
+for n in [50, 100, 200, 300, 500, 1000]:
+    start_time = time.time()
+    model = RandomForestClassifier(n_estimators=n, ...)
+    model.fit(X_train, y_train)
+    train_time = time.time() - start_time
+    accuracy = model.score(X_test, y_test)
+    model_size = get_model_size(model)
+    print(f&quot;{n} trees: {train_time:.1f}s, {accuracy:.3f}, {model_size}MB&quot;)
+</code></pre>
+<pre><code class="language-php">session_start();
+if (!isset($_SESSION['school_id']) || $_SESSION['role'] !== 'student') {
+    header(&quot;Location: ../login.php&quot;);
+</code></pre>
+<pre><code class="language-php">// SSO Integration example
+require 'vendor/cas-auth/cas.php';
+phpCAS::client(CAS_VERSION_2_0, 'sso.university.edu', 443, '/cas');
+phpCAS::forceAuthentication();
+$school_id = phpCAS::getUser();
+
+// SIS API Integration
+$student_data = fetch_from_sis($school_id);
+$program = $student_data['program'];
+$year_level = $student_data['year_level'];
+</code></pre>
+<pre><code class="language-plaintext">Total 5-year cost: ₱350k + (₱80k × 5) = ₱750k
+Total 5-year benefit: ₱1.5M (time saved + better outcomes)
+ROI = (₱1.5M - ₱750k) / ₱750k = 100% ROI
+Payback period: ~2.5 years
+</code></pre></body></html>

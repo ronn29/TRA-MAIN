@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tragabay | What the Site Does</title>
+    <style>
+        :root {
+            color-scheme: light;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: #f6f8fb;
+            color: #1f2933;
+            line-height: 1.6;
+        }
+        header {
+            padding: 32px 24px 8px;
+            background: radial-gradient(circle at 20% 20%, #e0ecff, #f6f8fb 55%);
+        }
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px 36px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.4rem;
+            letter-spacing: -0.02em;
+        }
+        h2 {
+            margin: 0 0 12px;
+            font-size: 1.35rem;
+            letter-spacing: -0.01em;
+        }
+        p {
+            margin: 0 0 12px;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: #eef3ff;
+            color: #1d4ed8;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        section {
+            background: #fff;
+            border: 1px solid #e4e7ec;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            margin-bottom: 18px;
+            padding: 18px 18px 6px;
+        }
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+        .card {
+            padding: 12px;
+            border: 1px solid #edf0f5;
+            border-radius: 10px;
+            background: #f9fbff;
+        }
+        .list {
+            padding-left: 18px;
+            margin: 0 0 6px;
+        }
+        ol.list {
+            padding-left: 20px;
+        }
+        li + li {
+            margin-top: 6px;
+        }
+        .tagline {
+            font-size: 1.05rem;
+            color: #3c4a60;
+            margin: 10px 0 0;
+            max-width: 760px;
+        }
+        .muted {
+            color: #5f6b7a;
+        }
+        footer {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.95rem;
+            padding: 22px 0 32px;
+        }
+        @media (max-width: 640px) {
+            header {
+                padding-top: 26px;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <div class="pill">Tragabay Career Guidance</div>
+            <h1>What this website is and how it works</h1>
+            <p class="tagline">Tragabay helps graduating students map their strengths to real career options, generate a professional resume, and schedule guidance consultations with support from machine learning–driven recommendations.</p>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section>
+            <h2>What the platform is</h2>
+            <p>Tragabay is a web-based career guidance portal for students. It blends traditional guidance workflows (assessments, counseling, resources) with machine learning to recommend careers, courses, and next steps tailored to each student’s responses.</p>
+            <div class="columns">
+                <div class="card">
+                    <strong>Students</strong>
+                    <p class="muted">Find suitable career paths, download resume templates, and book counseling.</p>
+                </div>
+                <div class="card">
+                    <strong>Guidance staff</strong>
+                    <p class="muted">Review assessments, approve feedback, manage consultations, and curate resources.</p>
+                </div>
+                <div class="card">
+                    <strong>Program admins</strong>
+                    <p class="muted">Maintain questions, programs, and resource lists that feed recommendations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>What you can do here</h2>
+            <ul class="list">
+                <li>Take a career assessment that measures interests, strengths, and program fit.</li>
+                <li>See career path suggestions ranked by a trained ML model (`ml/` models and weights).</li>
+                <li>Explore curated resources and courses that match your assessment results.</li>
+                <li>Generate or download resume templates aligned with your chosen field.</li>
+                <li>Book and manage guidance consultations with real-time availability.</li>
+                <li>Share feedback; approved comments surface on the public homepage.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>How it works (student flow)</h2>
+            <ol class="list">
+                <li><strong>Create an account</strong> via `Register` and sign in.</li>
+                <li><strong>Take the assessment</strong> (questionnaire powered by `student/assessment_test.php`).</li>
+                <li><strong>Get recommendations</strong>: responses are scored and sent to the ML predictor to rank career paths.</li>
+                <li><strong>Explore options</strong>: view suggested programs, related roles, and matching online resources.</li>
+                <li><strong>Build a resume</strong> using the provided templates to match your target field.</li>
+                <li><strong>Book a consultation</strong> to confirm plans with the guidance team and receive next steps.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>How it works (under the hood)</h2>
+            <div class="columns">
+                <div class="card">
+                    <strong>Assessment scoring</strong>
+                    <p class="muted">Question weights and mappings live in `ml/question_weights_map*.{py,json,joblib}`; they transform answers into feature vectors.</p>
+                </div>
+                <div class="card">
+                    <strong>Model prediction</strong>
+                    <p class="muted">Serialized models in `ml/career_model*.pkl` and label encoders turn scores into ranked career recommendations.</p>
+                </div>
+                <div class="card">
+                    <strong>Data + storage</strong>
+                    <p class="muted">PHP + MySQL (see `db/dbconn.php`) store students, assessments, resources, consultations, and feedback.</p>
+                </div>
+                <div class="card">
+                    <strong>Admin controls</strong>
+                    <p class="muted">Admin pages under `admin/` let staff manage questions, programs, resources, users, and feedback approvals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Pages to know</h2>
+            <ul class="list">
+                <li>`index.php` – public landing page with features and student feedback.</li>
+                <li>`student/assessment_test.php` – assessment experience that feeds recommendations.</li>
+                <li>`student/` pages – student dashboard, appointments, and resource views.</li>
+                <li>`admin/` pages – question, program, user, consultation, and resource management.</li>
+                <li>`docs/` – explainer guides for models, training, and defenses.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Key ideas to remember</h2>
+            <ul class="list">
+                <li>The site exists to remove career-choice ambiguity for graduating students.</li>
+                <li>Recommendations combine structured assessments with ML for ranked career fits.</li>
+                <li>Resources and resume templates keep students moving from insight to action.</li>
+                <li>Consultations close the loop with human guidance and verification.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        Built for quick demos and onboarding. Update this page whenever features change.
+    </footer>
+</body>
+</html>

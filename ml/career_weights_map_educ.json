@@ -1,0 +1,172 @@
+{
+  "Music and Arts Teacher (K-12)": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 1
+  },
+  "Special Program for the Arts Teacher": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 1
+  },
+  "Senior High School Core Subjects and Arts & Design Track Teacher": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 2
+  },
+  "Schools Culture and Arts Coordinator": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 1
+  },
+  "Government Employee at Tourism Offices": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 1
+  },
+  "Museum and Art Gallery Curator": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 0
+  },
+  "Production Manager": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 0
+  },
+  "Designer": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 0
+  },
+  "Director in Creative Industries": {
+    "BCAEd": 3,
+    "BECEd": 0,
+    "BEEd": 1
+  },
+  "Preschool Teacher": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 1
+  },
+  "Teacher": {
+    "BCAEd": 1,
+    "BECEd": 3,
+    "BEEd": 3
+  },
+  "Preschool and Childcare Center Director": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 0
+  },
+  "Special Education Teacher": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 1
+  },
+  "Teaching Assistant": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 2
+  },
+  "Childcare Worker": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 0
+  },
+  "Child Life Specialist": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 0
+  },
+  "School Counselor": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 1
+  },
+  "Early Years Teacher": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 1
+  },
+  "Child Care Consultant": {
+    "BCAEd": 0,
+    "BECEd": 3,
+    "BEEd": 0
+  },
+  "Educational Consultant": {
+    "BCAEd": 1,
+    "BECEd": 3,
+    "BEEd": 2
+  },
+  "Elementary Teacher": {
+    "BCAEd": 0,
+    "BECEd": 1,
+    "BEEd": 3
+  },
+  "K to 12 General Subjects Teacher": {
+    "BCAEd": 0,
+    "BECEd": 1,
+    "BEEd": 3
+  },
+  "Headstart Facilitator": {
+    "BCAEd": 0,
+    "BECEd": 2,
+    "BEEd": 3
+  },
+  "Pre-kinder Teacher": {
+    "BCAEd": 0,
+    "BECEd": 2,
+    "BEEd": 3
+  },
+  "Teacher Aid": {
+    "BCAEd": 0,
+    "BECEd": 2,
+    "BEEd": 3
+  },
+  "Other Teaching Professions": {
+    "BCAEd": 1,
+    "BECEd": 1,
+    "BEEd": 3
+  },
+  "Arts and Design Track Teacher (Grades 11-12)": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  },
+  "Core Subjects Teacher in Arts (Grades 11-12)": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  },
+  "Special Program for the Arts (SPA) Teacher": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  },
+  "Grade 1-3 Teacher": {
+    "BCAEd": 0,
+    "BECEd": 1,
+    "BEEd": 3
+  },
+  "Positions in Creative Industries": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  },
+  "Positions in Museum and Art Galleries": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  },
+  "K to 12 Music Teacher": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  },
+  "Tourism Offices in the LGU": {
+    "BCAEd": 2,
+    "BECEd": 0,
+    "BEEd": 3
+  }
+}

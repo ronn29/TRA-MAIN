@@ -1,0 +1,280 @@
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    background: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    padding: 30px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #2d3a4b;
+}
+
+.card-icon {
+    font-size: 2em;
+    color: #3281db;
+}
+
+.stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    color: #2d3a4b;
+    margin: 10px 0;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.tip-box {
+    background: #f0f8ff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    font-style: italic;
+    color: #2d3a4b;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #3281db;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+h3 {
+    font-size: 1.2rem;
+    padding-left: 30px;
+}
+
+
+/* profile css*/
+
+.profile-container {
+    padding: 30px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    padding: 30px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.form-control:read-only {
+    background-color: #f8f9fa;
+}
+
+.edit-mode .form-control {
+    border-color: #3281db;
+    pointer-events: auto;
+}
+
+.edit-mode .form-control:read-only {
+    background-color: #fff;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: rgb(110, 24, 42);;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.form-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.edit-buttons {
+    display: none;
+    gap: 10px;
+}
+
+.edit-mode .edit-buttons {
+    display: flex;
+}
+
+.view-buttons {
+    display: flex;
+}
+
+.edit-mode .view-buttons {
+    display: none;
+}
+
+/* Container responsive styles */
+.container {
+    padding: 20px;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card-header h3 {
+        font-size: 1em;
+    }
+
+    .card-icon {
+        font-size: 1.5em;
+    }
+
+    .stat-number {
+        font-size: 1.5em;
+    }
+
+    .stat-label {
+        font-size: 0.85em;
+    }
+
+    .tip-box {
+        margin: 15px 0;
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    h3 {
+        font-size: 1rem;
+        padding-left: 15px;
+    }
+
+    .profile-container {
+        padding: 15px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dashboard-cards {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .card-icon {
+        align-self: flex-end;
+    }
+
+    .stat-number {
+        font-size: 1.3em;
+    }
+
+    .tip-box {
+        margin: 10px 0;
+        padding: 12px;
+        font-size: 0.85em;
+    }
+}
