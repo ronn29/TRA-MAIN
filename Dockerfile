@@ -1,7 +1,7 @@
 FROM php:8.3-apache
 
 RUN docker-php-ext-install mysqli
-RUN a2enmod rewrite headers expires
+RUN a2enmod rewrite && a2enmod headers && a2enmod expires && a2dismod mpm_event && a2enmod mpm_prefork
 
 # Allow .htaccess overrides
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
