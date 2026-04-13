@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["php83", "php83Extensions.mysqli", "php83Extensions.curl"]
+
+[phases.build]
+cmds = ["mkdir -p /etc/php.d && echo 'extension=mysqli' > /etc/php.d/mysqli.ini"]
+
+[start]
+cmd = "php -d extension=mysqli -S 0.0.0.0:${PORT:-8080} -t ."
