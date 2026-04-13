@@ -1,5 +1,5 @@
 <?php
-$servername = getenv('MYSQLHOST') ?: 'localhost';
+$servername = getenv('MYSQLHOST') ?: '127.0.0.1';
 $uname      = getenv('MYSQLUSER') ?: 'root';
 $pass       = getenv('MYSQLPASSWORD') ?: '';
 $dbname     = getenv('MYSQLDATABASE') ?: 'tra-db';
