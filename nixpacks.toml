@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["php83", "php83Extensions.mysqli", "php83Extensions.curl"]
+nixPkgs = ["php83", "php83Extensions.mysqli", "php83Extensions.curl", "php83Packages.composer"]
 
 [phases.build]
-cmds = ["mkdir -p /etc/php.d && echo 'extension=mysqli' > /etc/php.d/mysqli.ini"]
+cmds = ["composer install --no-dev --optimize-autoloader"]
 
 [start]
 cmd = "php -d extension=mysqli -S 0.0.0.0:${PORT:-8080} -t ."

@@ -5,30 +5,34 @@ use PHPMailer\PHPMailer\Exception;
 
 require __DIR__ . '/vendor/autoload.php';
 
+function smtpEnv($key, $default = '') {
+    return getenv($key) ?: ($_ENV[$key] ?? ($_SERVER[$key] ?? $default));
+}
+
 function sendMail(array $data): array
 {
     $mail = new PHPMailer(true);
 
     try {
         $mail->isSMTP();
-        $mail->Host       = getenv('SMTP_HOST');
+        $mail->Host       = smtpEnv('SMTP_HOST');
         $mail->SMTPAuth   = true;
-        $mail->Username   = getenv('SMTP_USER');
-        $mail->Password   = getenv('SMTP_PASS');
+        $mail->Username   = smtpEnv('SMTP_USER');
+        $mail->Password   = smtpEnv('SMTP_PASS');
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = getenv('SMTP_PORT') ?: 587;
+        $mail->Port       = smtpEnv('SMTP_PORT', 587);
         $mail->CharSet    = 'UTF-8';
 
-        $debugLevel = getenv('SMTP_DEBUG');
-        if ($debugLevel !== false) {
+        $debugLevel = smtpEnv('SMTP_DEBUG');
+        if ($debugLevel !== '') {
             $mail->SMTPDebug  = (int)$debugLevel;
             $mail->Debugoutput = static function ($str) {
                 error_log('SMTP: ' . $str);
             };
         }
 
-        $fromEmail = getenv('MAIL_FROM');
-        $fromName  = getenv('MAIL_FROM_NAME') ?: 'Tragabay';
+        $fromEmail = smtpEnv('MAIL_FROM');
+        $fromName  = smtpEnv('MAIL_FROM_NAME', 'Tragabay');
         $mail->setFrom($fromEmail, $fromName);
 
         $mail->addAddress($data['to'], $data['name'] ?? '');
