@@ -1,17 +1,13 @@
 <?php
-$servername="localhost";
-$uname="root";
-$pass="";
-$dbname="tragabay_db_survey";
+$servername = getenv('MYSQLHOST') ?: 'localhost';
+$uname      = getenv('MYSQLUSER') ?: 'root';
+$pass       = getenv('MYSQLPASSWORD') ?: '';
+$dbname     = getenv('MYSQLDATABASE') ?: 'tragabay_db_survey';
+$port       = getenv('MYSQLPORT') ?: 3306;
 
-$conn = mysqli_connect($servername, $uname, $pass, $dbname);
+$conn = mysqli_connect($servername, $uname, $pass, $dbname, (int)$port);
 
 if (!$conn) {
-
-	
-	if (!$conn) {
-		echo 'Error connecting to database'.mysqli_connect_error($conn);
-}
-
+	die('Error connecting to database: ' . mysqli_connect_error());
 }
 ?>
