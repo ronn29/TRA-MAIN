@@ -1,9 +1,13 @@
 <?php
-$servername = getenv('MYSQLHOST') ?: '127.0.0.1';
-$uname      = getenv('MYSQLUSER') ?: 'root';
-$pass       = getenv('MYSQLPASSWORD') ?: '';
-$dbname     = getenv('MYSQLDATABASE') ?: 'tra-db';
-$port       = getenv('MYSQLPORT') ?: 3306;
+function env($key, $default = '') {
+	return getenv($key) ?: ($_ENV[$key] ?? ($_SERVER[$key] ?? $default));
+}
+
+$servername = env('MYSQLHOST', '127.0.0.1');
+$uname      = env('MYSQLUSER', 'root');
+$pass       = env('MYSQLPASSWORD', '');
+$dbname     = env('MYSQLDATABASE', 'tra-db');
+$port       = env('MYSQLPORT', 3306);
 
 $conn = mysqli_connect($servername, $uname, $pass, $dbname, (int)$port);
 
