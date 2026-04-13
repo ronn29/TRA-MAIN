@@ -1,5 +1,6 @@
 {
     "require": {
+        "ext-mysqli": "*",
         "phpmailer/phpmailer": "^7.0",
         "tecnickcom/tcpdf": "^6.10"
     }
